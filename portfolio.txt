@@ -1,0 +1,207 @@
+1. Hero sekcija (prvi ekran)
+
+Kratko i jasno:
+
+Zdravo, ja sam Vladimir.
+Frontend Developer sa 4.5 godine iskustva u razvoju web aplikacija. (godine moze automatski da broji od decembra 2021.)
+
+Specijalizovan za React, Next.js i moderne JavaScript tehnologije.
+
+Dugmad:
+
+Download CV
+Contact Me
+
+Možeš dodati i:
+
+LinkedIn
+
+2. About Me
+
+Ovde napiši svoju priču.
+
+Primer:
+
+Frontend developer sa 4.5 godine profesionalnog iskustva u razvoju i održavanju web aplikacija. Trenutno radim na platformama za online gaming i kazino industriju, gde učestvujem u razvoju korisničkog interfejsa, optimizaciji performansi i implementaciji novih funkcionalnosti koristeći React i Next.js.
+
+Dodaj:
+
+godine iskustva
+trenutnu poziciju (Front end developer)
+šta te najviše zanima
+
+3. Skills
+
+Podeli po kategorijama.
+
+Frontend
+JavaScript
+TypeScript (ako znaš)
+React
+Next.js
+HTML5
+CSS3
+Sass
+Bootstrap
+State Management
+Context API
+Redux (ako koristiš)
+Zustand (ako koristiš)
+
+Backend
+PHP
+MySQL
+REST API
+Tools
+Git
+GitHub
+GitLab
+Swagger
+Figma
+
+4. Experience
+
+Ovo je veoma bitna sekcija.
+
+Primer:
+
+Frontend Developer
+Company Name (Gemini Infotech)
+2021 - Present
+
+- Razvoj i održavanje React aplikacija
+- Integracija REST API servisa
+- Implementacija novih funkcionalnosti
+- Optimizacija performansi
+- Saradnja sa backend i QA timovima
+
+Nemoj pisati poverljive informacije o projektu.
+
+Umesto:
+
+❌ "Radio sam na projektu X"
+
+Piši:
+
+✅ "Razvijao i održavao web aplikacije za online gaming industriju"
+
+5. Projects
+
+Najvažnija sekcija.
+
+Za svaki projekat:
+
+naziv
+opis
+tehnologije
+screenshot
+GitHub
+Live Demo
+
+Primer:
+
+Casino Lobby Clone
+
+Tehnologije:
+
+Next.js
+React
+Sass
+REST API
+
+Opis:
+
+Aplikacija koja prikazuje listu kazino igara sa filtriranjem, pretragom i paginacijom.
+
+
+6. Technical Highlights
+
+Ovo mnogi nemaju, a ostavlja dobar utisak.
+
+Napravi kartice:
+
+Performance Optimization
+Lazy Loading
+Code Splitting
+Dynamic Imports
+API Integration
+Axios
+React Query
+Responsive Design
+Mobile First
+Accessibility
+SEO
+Next.js Metadata
+Open Graph
+
+7. Contact
+
+Forma:
+
+Name
+Email
+Message
+
+Ispod:
+
+LinkedIn
+Email
+Tehnologije za portfolio
+
+Pošto želiš Next.js:
+
+Next.js 15
+TypeScript
+Sass
+Framer Motion
+React Hook Form
+Zod
+EmailJS ili Resend
+Dodatne stvari koje ostavljaju jak utisak
+Dark / Light mode
+Animacije
+
+Koristi umereno:
+
+fade in
+slide up
+hover efekti
+
+Framer Motion je odličan za to.
+
+Lighthouse score
+
+Ciljaj:
+
+Performance: 95+
+Accessibility: 95+
+Best Practices: 100
+SEO: 100
+Projekat koji bih ja napravio na tvom mestu
+
+Pošto radiš u online casino industriji, napravio bih portfolio sa temom modernog dashboard-a:
+
+tamna tema
+elegantne animacije
+sekcija iskustva kao timeline
+projekti kao kartice
+kontakt forma
+
+To pokazuje da znaš:
+
+React
+Next.js
+SEO
+animacije
+responsive dizajn
+organizaciju koda
+
+--------------------
+
+- proci kroz casino projects i dodati naziv, opis, tehnologije, screenshot
+- dodati sentzuu.com
+- dodati sr/en
+- sticky button CV, Contact
+- izbaci scroll module
+- projekti kao slajder
+- da vise izgleda kao custom tema ceo template

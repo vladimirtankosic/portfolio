@@ -1,0 +1,188 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: var(--header-height);
+  transition:
+    background-color var(--transition-slow),
+    backdrop-filter var(--transition-slow),
+    border-color var(--transition-slow);
+}
+
+.scrolled {
+  background: rgba(8, 12, 20, 0.88);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  border-bottom: 1px solid var(--border-subtle);
+
+  [data-theme='light'] & {
+    background: rgba(245, 247, 250, 0.9);
+  }
+}
+
+.inner {
+  @include container;
+  @include flex-between;
+  height: 100%;
+}
+
+.logo {
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: var(--text-primary);
+  transition: color var(--transition-fast);
+
+  span {
+    color: var(--accent);
+  }
+
+  &:hover {
+    color: var(--text-accent);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+    border-radius: var(--radius-sm);
+  }
+}
+
+// Desktop nav — hidden only below lg (1024px)
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  @include respond-to(lg) {
+    display: none;
+  }
+}
+
+.navLink {
+  padding: 8px 14px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  border-radius: var(--radius-sm);
+  transition:
+    color var(--transition-fast),
+    background var(--transition-fast);
+
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+  }
+
+  &:hover {
+    color: var(--text-primary);
+    background: var(--accent-dim);
+  }
+}
+
+.active {
+  color: var(--text-accent);
+  background: var(--accent-dim);
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+// Mobile hamburger — only show below lg (1024px)
+.mobileMenuBtn {
+  display: none;
+  @include flex-center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-subtle);
+  transition:
+    color var(--transition-fast),
+    background var(--transition-fast),
+    border-color var(--transition-fast);
+
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: var(--radius-md);
+  }
+
+  &:hover {
+    color: var(--text-primary);
+    background: var(--accent-dim);
+    border-color: var(--border);
+  }
+
+  @include respond-to(lg) {
+    display: flex;
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.mobileMenu {
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  right: 0;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 12px 0 16px;
+  z-index: 99;
+  box-shadow: var(--shadow-md);
+
+  // Only visible inside AnimatePresence on mobile
+  @include respond-above(lg) {
+    display: none !important;
+  }
+}
+
+.mobileNav {
+  @include container;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.mobileNavLink {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 11px 16px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  border-radius: var(--radius-md);
+  transition:
+    color var(--transition-fast),
+    background var(--transition-fast);
+
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: var(--radius-md);
+  }
+
+  &:hover,
+  &.active {
+    color: var(--text-primary);
+    background: var(--accent-dim);
+  }
+
+  &.active {
+    color: var(--text-accent);
+  }
+}

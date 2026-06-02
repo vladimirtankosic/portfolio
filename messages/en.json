@@ -1,0 +1,142 @@
+{
+  "nav": {
+    "about": "About",
+    "skills": "Skills",
+    "experience": "Experience",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "hero": {
+    "badge": "Available for new opportunities",
+    "greeting": "Hi, I'm",
+    "name": "Vladimir",
+    "subheadline": "Frontend Developer with {years}+ years of professional experience building modern web applications.",
+    "description": "Specialized in React, Next.js and modern JavaScript technologies. Currently building high-performance web apps for the online gaming industry.",
+    "downloadCv": "Download CV",
+    "contactMe": "Contact Me",
+    "connect": "Connect",
+    "linkedinAriaLabel": "Visit my LinkedIn profile"
+  },
+  "about": {
+    "tag": "About Me",
+    "titleLine1": "Crafting digital experiences",
+    "titleLine2": "with precision",
+    "statsYears": "Years Exp.",
+    "statsCompany": "Company",
+    "statsTechnologies": "Technologies",
+    "statsBugs": "Bugs Fixed",
+    "bio1": "I'm a [[Frontend Developer]] with professional experience since December 2021, currently working at [[Gemini Infotech]] where I develop and maintain web applications for the online gaming industry.",
+    "bio2": "My day-to-day involves building [[reusable UI component libraries]], integrating REST APIs, and continuously optimizing application performance. I care deeply about writing clean, maintainable code and delivering seamless, responsive user experiences.",
+    "bio3": "I collaborate closely with backend developers and QA teams, participate in code reviews, and take ownership of frontend architecture decisions. I thrive in environments that value craftsmanship and technical excellence.",
+    "interestsTitle": "Areas of Interest",
+    "interests": [
+      "Frontend Architecture",
+      "Performance Optimization",
+      "Modern React Ecosystem",
+      "User Experience",
+      "Scalable Applications",
+      "Design Systems"
+    ]
+  },
+  "skills": {
+    "tag": "Technical Skills",
+    "title": "Technologies I work with",
+    "subtitle": "A curated set of tools and technologies I use daily to build modern, performant web applications.",
+    "categoryFrontend": "Frontend",
+    "categoryState": "State Management",
+    "categoryBackend": "Backend",
+    "categoryTools": "Tools"
+  },
+  "experience": {
+    "tag": "Experience",
+    "title": "Professional journey",
+    "subtitle": "My professional experience building production web applications.",
+    "keyResponsibilities": "Key Responsibilities",
+    "items": [
+      {
+        "description": "Developing and maintaining web applications for the online gaming industry, working within agile teams to deliver performant, scalable frontend solutions.",
+        "period": "December 2021 – Present",
+        "responsibilities": [
+          "Development and maintenance of React applications",
+          "Integration of REST APIs",
+          "Implementation of new features and UI components",
+          "Performance optimization and code splitting",
+          "Responsive UI development across all device sizes",
+          "Collaboration with backend developers and QA teams",
+          "Code reviews and bug fixing"
+        ]
+      }
+    ]
+  },
+  "projects": {
+    "tag": "Projects",
+    "title": "Selected work",
+    "subtitle": "A selection of projects I've built. More on my GitHub.",
+    "githubAriaLabel": "View {title} on GitHub",
+    "liveAriaLabel": "View live demo of {title}",
+    "items": [
+      {
+        "title": "Casino Lobby Clone",
+        "description": "A casino lobby application featuring game listing, category filtering, search functionality and pagination. Built with Next.js and integrated with a REST API for dynamic game data."
+      }
+    ]
+  },
+  "highlights": {
+    "tag": "Technical Strengths",
+    "title": "What I bring to the table",
+    "subtitle": "Core technical capabilities that drive quality in every project I work on.",
+    "items": [
+      {
+        "title": "Performance Optimization",
+        "description": "Delivering fast, efficient applications through modern web performance techniques."
+      },
+      {
+        "title": "API Integration",
+        "description": "Seamless integration with REST APIs using modern data-fetching patterns."
+      },
+      {
+        "title": "Responsive Design",
+        "description": "Crafting pixel-perfect interfaces that work flawlessly across all screen sizes."
+      },
+      {
+        "title": "SEO & Metadata",
+        "description": "Maximizing discoverability with built-in Next.js metadata APIs and best practices."
+      }
+    ]
+  },
+  "contact": {
+    "tag": "Get In Touch",
+    "title": "Let's work together",
+    "subtitle": "Have a project in mind or want to discuss opportunities? I'd love to hear from you.",
+    "infoText": "I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision. Feel free to reach out through the form or directly via email.",
+    "emailLabel": "Email",
+    "linkedinLabel": "LinkedIn",
+    "formTitle": "Send a message",
+    "nameLabel": "Name",
+    "namePlaceholder": "Your name",
+    "emailInputLabel": "Email",
+    "emailPlaceholder": "your@email.com",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Tell me about your project or opportunity...",
+    "sendButton": "Send Message",
+    "sending": "Sending...",
+    "successMessage": "Message sent! I'll get back to you as soon as possible.",
+    "errorMessage": "Something went wrong. Please try again.",
+    "networkError": "Failed to send message. Please check your connection and try again.",
+    "validation": {
+      "nameMin": "Name must be at least 2 characters",
+      "nameMax": "Name is too long",
+      "emailInvalid": "Please enter a valid email address",
+      "messageMin": "Message must be at least 10 characters",
+      "messageMax": "Message is too long"
+    }
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "linkedinAriaLabel": "LinkedIn profile"
+  },
+  "stickyActions": {
+    "downloadCv": "Download CV",
+    "contactMe": "Contact Me"
+  }
+}

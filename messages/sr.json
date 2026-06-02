@@ -1,0 +1,142 @@
+{
+  "nav": {
+    "about": "O meni",
+    "skills": "Veštine",
+    "experience": "Iskustvo",
+    "projects": "Projekti",
+    "contact": "Kontakt"
+  },
+  "hero": {
+    "badge": "Dostupan za nove prilike",
+    "greeting": "Zdravo, ja sam",
+    "name": "Vladimir",
+    "subheadline": "Frontend Developer sa {years}+ godina profesionalnog iskustva u razvoju modernih web aplikacija.",
+    "description": "Specijalizovan za React, Next.js i moderne JavaScript tehnologije. Trenutno razvijam visoko-performantne web aplikacije za industriju online igara.",
+    "downloadCv": "Preuzmi CV",
+    "contactMe": "Kontaktiraj me",
+    "connect": "Poveži se",
+    "linkedinAriaLabel": "Poseti moj LinkedIn profil"
+  },
+  "about": {
+    "tag": "O meni",
+    "titleLine1": "Kreiranje digitalnih iskustava",
+    "titleLine2": "sa preciznošću",
+    "statsYears": "God. Iskustva",
+    "statsCompany": "Kompanija",
+    "statsTechnologies": "Tehnologije",
+    "statsBugs": "Ispravl. Grešaka",
+    "bio1": "Ja sam [[Frontend Developer]] sa profesionalnim iskustvom od decembra 2021, trenutno zaposlen u [[Gemini Infotech]] gde razvijam i održavam web aplikacije za industriju online igara.",
+    "bio2": "Moj svakodnevni rad obuhvata izgradnju [[biblioteka višekratno upotrebljivih UI komponenti]], integraciju REST API-ja i kontinuiranu optimizaciju performansi aplikacija. Veoma mi je stalo do pisanja čistog, održivog koda i isporuke besprekorne, responzivne korisničke iskustvo.",
+    "bio3": "Blisko sarađujem sa backend developerima i QA timovima, učestvujem u pregledima koda i preuzimam odgovornost za odluke o frontend arhitekturi. Napreduje u okruženjima koja cene zanatstvo i tehničku izvrsnost.",
+    "interestsTitle": "Oblasti interesovanja",
+    "interests": [
+      "Frontend Arhitektura",
+      "Optimizacija Performansi",
+      "Moderni React Ekosistem",
+      "Korisničko Iskustvo",
+      "Skalabilne Aplikacije",
+      "Dizajn Sistemi"
+    ]
+  },
+  "skills": {
+    "tag": "Tehničke Veštine",
+    "title": "Tehnologije sa kojima radim",
+    "subtitle": "Skup alata i tehnologija koje svakodnevno koristim za razvoj modernih, performantnih web aplikacija.",
+    "categoryFrontend": "Frontend",
+    "categoryState": "Upravljanje Stanjem",
+    "categoryBackend": "Backend",
+    "categoryTools": "Alati"
+  },
+  "experience": {
+    "tag": "Iskustvo",
+    "title": "Profesionalni put",
+    "subtitle": "Moje profesionalno iskustvo u razvoju produkcijskih web aplikacija.",
+    "keyResponsibilities": "Ključne Odgovornosti",
+    "items": [
+      {
+        "description": "Razvoj i održavanje web aplikacija za industriju online igara, rad unutar agilnih timova radi isporuke performantnih i skalabilnih frontend rešenja.",
+        "period": "Decembar 2021 – Danas",
+        "responsibilities": [
+          "Razvoj i održavanje React aplikacija",
+          "Integracija REST API-ja",
+          "Implementacija novih funkcionalnosti i UI komponenti",
+          "Optimizacija performansi i code splitting",
+          "Responzivni UI razvoj za sve veličine uređaja",
+          "Saradnja sa backend developerima i QA timovima",
+          "Code review i ispravka grešaka"
+        ]
+      }
+    ]
+  },
+  "projects": {
+    "tag": "Projekti",
+    "title": "Odabrani radovi",
+    "subtitle": "Izbor projekata koje sam izgradio. Više na mom GitHub-u.",
+    "githubAriaLabel": "Pogledaj {title} na GitHub-u",
+    "liveAriaLabel": "Pogledaj live demo od {title}",
+    "items": [
+      {
+        "title": "Casino Lobby Klon",
+        "description": "Aplikacija casino lobbija sa listingom igara, filtriranjem po kategorijama, funkcijom pretrage i paginacijom. Izgrađena sa Next.js i integrisana sa REST API-jem za dinamičke podatke o igrama."
+      }
+    ]
+  },
+  "highlights": {
+    "tag": "Tehničke Prednosti",
+    "title": "Šta donosim na sto",
+    "subtitle": "Ključne tehničke sposobnosti koje pokreću kvalitet u svakom projektu na kome radim.",
+    "items": [
+      {
+        "title": "Optimizacija Performansi",
+        "description": "Isporuka brzih i efikasnih aplikacija kroz moderne tehnike web performansi."
+      },
+      {
+        "title": "Integracija API-ja",
+        "description": "Besprekorna integracija sa REST API-jevima korišćenjem modernih obrazaca za dohvatanje podataka."
+      },
+      {
+        "title": "Responzivni Dizajn",
+        "description": "Kreiranje pixel-savršenih interfejsa koji besprekorno rade na svim veličinama ekrana."
+      },
+      {
+        "title": "SEO i Metapodaci",
+        "description": "Maksimiziranje vidljivosti uz ugrađene Next.js metadata API-je i najbolje prakse."
+      }
+    ]
+  },
+  "contact": {
+    "tag": "Stupite u Kontakt",
+    "title": "Hajde da radimo zajedno",
+    "subtitle": "Imate projekat na umu ili želite da razgovarate o prilikama? Rado bih čuo od vas.",
+    "infoText": "Uvek sam otvoren za razgovor o novim projektima, kreativnim idejama ili prilikama da budem deo vaše vizije. Slobodno se obratite putem formulara ili direktno putem e-pošte.",
+    "emailLabel": "E-pošta",
+    "linkedinLabel": "LinkedIn",
+    "formTitle": "Pošaljite poruku",
+    "nameLabel": "Ime",
+    "namePlaceholder": "Vaše ime",
+    "emailInputLabel": "E-pošta",
+    "emailPlaceholder": "vas@email.com",
+    "messageLabel": "Poruka",
+    "messagePlaceholder": "Recite mi o vašem projektu ili prilici...",
+    "sendButton": "Pošalji poruku",
+    "sending": "Slanje...",
+    "successMessage": "Poruka je poslata! Odgovorić vam što pre moguće.",
+    "errorMessage": "Nešto je pošlo po zlu. Molimo pokušajte ponovo.",
+    "networkError": "Slanje poruke nije uspelo. Proverite vezu i pokušajte ponovo.",
+    "validation": {
+      "nameMin": "Ime mora imati najmanje 2 karaktera",
+      "nameMax": "Ime je predugačko",
+      "emailInvalid": "Unesite važeću e-mail adresu",
+      "messageMin": "Poruka mora imati najmanje 10 karaktera",
+      "messageMax": "Poruka je predugačka"
+    }
+  },
+  "footer": {
+    "rights": "Sva prava zadržana.",
+    "linkedinAriaLabel": "LinkedIn profil"
+  },
+  "stickyActions": {
+    "downloadCv": "Preuzmi CV",
+    "contactMe": "Kontaktiraj me"
+  }
+}

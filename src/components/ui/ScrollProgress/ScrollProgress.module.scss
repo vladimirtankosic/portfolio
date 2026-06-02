@@ -1,0 +1,14 @@
+@use '../../../styles/variables' as *;
+
+.bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 200;
+  background: linear-gradient(90deg, var(--accent) 0%, var(--accent-hover) 100%);
+  transform-origin: left center;
+  pointer-events: none;
+  box-shadow: 0 0 8px var(--accent-glow);
+}
