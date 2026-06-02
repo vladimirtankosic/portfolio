@@ -8,7 +8,7 @@ const schema = z.object({
   message: z.string().min(10).max(2000),
 });
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend('re_xxxxxxxxx');
 const TO_EMAIL = 'tankosicvladimir93@gmail.com';
 
 export async function POST(req: NextRequest) {
