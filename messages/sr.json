@@ -81,6 +81,11 @@
       }
     ]
   },
+  "projectsPage": {
+    "title": "PROJEKTI",
+    "subtitle": "Kolekcija odabranih radova i studija slučaja",
+    "seeAll": "Svi Projekti"
+  },
   "highlights": {
     "tag": "Tehničke Prednosti",
     "title": "Šta donosim na sto",

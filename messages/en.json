@@ -81,6 +81,11 @@
       }
     ]
   },
+  "projectsPage": {
+    "title": "PROJECTS",
+    "subtitle": "Collection of selected work and case studies",
+    "seeAll": "See All Projects"
+  },
   "highlights": {
     "tag": "Technical Strengths",
     "title": "What I bring to the table",

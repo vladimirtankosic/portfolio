@@ -1,11 +1,15 @@
 'use client';
 
+import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, A11y } from 'swiper/modules';
 import { AnimatedSection } from '@/components/ui/AnimatedSection/AnimatedSection';
+import { ProjectModal } from '@/components/ui/ProjectModal/ProjectModal';
 import { projects } from '@/data/projects';
 import { useI18n } from '@/providers/I18nProvider';
+import type { Project } from '@/types';
 import styles from './Projects.module.scss';
 
 function GitHubIcon() {
@@ -60,118 +64,156 @@ function MonitorIcon() {
   );
 }
 
-const TEST_REPEAT = 8;
+function ArrowRightIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <line x1="5" y1="12" x2="19" y2="12" />
+      <polyline points="12 5 19 12 12 19" />
+    </svg>
+  );
+}
 
 export function Projects() {
-  const { t, messages } = useI18n();
-
-  // Duplicate the existing project data to test Swiper layout and responsiveness.
-  // Replace with real projects when ready.
-  const displayProjects = Array.from({ length: TEST_REPEAT }, (_, i) => ({
-    ...projects[0],
-    id: `${projects[0].id}-${i}`,
-  }));
+  const { t } = useI18n();
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
-    <section id="projects" className={styles.section} aria-labelledby="projects-title">
-      <div className={styles.inner}>
-        <AnimatedSection className={styles.header}>
-          <p className="section-tag">{t('projects.tag')}</p>
-          <h2 className="section-title" id="projects-title">
-            {t('projects.title')}
-          </h2>
-          <p className="section-subtitle">{t('projects.subtitle')}</p>
-        </AnimatedSection>
+    <>
+      <section id="projects" className={styles.section} aria-labelledby="projects-title">
+        <div className={styles.inner}>
+          <AnimatedSection className={styles.header}>
+            <p className="section-tag">{t('projects.tag')}</p>
+            <h2 className="section-title" id="projects-title">
+              {t('projects.title')}
+            </h2>
+            <p className="section-subtitle">{t('projects.subtitle')}</p>
+          </AnimatedSection>
 
-        <AnimatedSection delay={0.1}>
-          <div className={styles.swiperWrapper}>
-            <Swiper
-              modules={[Navigation, Pagination, A11y]}
-              spaceBetween={24}
-              slidesPerView={1}
-              navigation
-              pagination={{ clickable: true }}
-              a11y={{ enabled: true }}
-              grabCursor
-              breakpoints={{
-                768: { slidesPerView: 2 },
-                1200: { slidesPerView: 3 },
-              }}
-              className={styles.swiper}
-            >
-              {displayProjects.map((project) => {
-                const translated = messages.projects.items[0];
-                const title = translated?.title ?? project.title;
-                const description = translated?.description ?? project.description;
+          <AnimatedSection delay={0.1}>
+            <div className={styles.swiperWrapper}>
+              <Swiper
+                modules={[Navigation, Pagination, A11y]}
+                spaceBetween={24}
+                slidesPerView={1}
+                navigation
+                pagination={{ clickable: true }}
+                a11y={{ enabled: true }}
+                grabCursor
+                breakpoints={{
+                  768: { slidesPerView: 2 },
+                  1200: { slidesPerView: 3 },
+                }}
+                className={styles.swiper}
+              >
+                {projects.map((project) => {
+                  const thumb = project.screenshots?.[0] ?? project.image;
+                  return (
+                    <SwiperSlide key={project.id} className={styles.slide}>
+                      <article className={styles.card}>
+                        {/* Full-card click area for modal */}
+                        <button
+                          className={styles.cardBtn}
+                          onClick={() => setSelectedProject(project)}
+                          aria-label={`View ${project.title} details`}
+                          tabIndex={0}
+                        />
 
-                return (
-                  <SwiperSlide key={project.id} className={styles.slide}>
-                    <article className={styles.card}>
-                      <div className={styles.imageWrapper}>
-                        {project.image ? (
-                          <Image
-                            src={project.image}
-                            alt={title}
-                            fill
-                            className={styles.image}
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
-                          />
-                        ) : (
-                          <div className={styles.imagePlaceholder}>
-                            <MonitorIcon />
-                            <span>{title}</span>
-                          </div>
-                        )}
-                        <div className={styles.imageOverlay} aria-hidden="true" />
-                      </div>
-
-                      <div className={styles.content}>
-                        <div className={styles.titleRow}>
-                          <h3 className={styles.title}>{title}</h3>
-                          <div className={styles.links}>
-                            {project.githubUrl && (
-                              <a
-                                href={project.githubUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className={styles.link}
-                                aria-label={t('projects.githubAriaLabel', { title })}
-                              >
-                                <GitHubIcon />
-                              </a>
-                            )}
-                            {project.liveUrl && (
-                              <a
-                                href={project.liveUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className={styles.link}
-                                aria-label={t('projects.liveAriaLabel', { title })}
-                              >
-                                <ExternalIcon />
-                              </a>
-                            )}
-                          </div>
+                        <div className={styles.imageWrapper}>
+                          {thumb ? (
+                            <Image
+                              src={thumb}
+                              alt={project.title}
+                              fill
+                              className={styles.image}
+                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
+                            />
+                          ) : (
+                            <div className={styles.imagePlaceholder}>
+                              <MonitorIcon />
+                              <span>{project.title}</span>
+                            </div>
+                          )}
+                          <div className={styles.imageOverlay} aria-hidden="true" />
                         </div>
 
-                        <p className={styles.description}>{description}</p>
+                        <div className={styles.content}>
+                          <div className={styles.titleRow}>
+                            <h3 className={styles.title}>{project.title}</h3>
+                            <div className={styles.links}>
+                              {project.githubUrl && (
+                                <a
+                                  href={project.githubUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className={styles.link}
+                                  aria-label={t('projects.githubAriaLabel', {
+                                    title: project.title,
+                                  })}
+                                  onClick={(e) => e.stopPropagation()}
+                                >
+                                  <GitHubIcon />
+                                </a>
+                              )}
+                              {project.liveUrl && (
+                                <a
+                                  href={project.liveUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className={styles.link}
+                                  aria-label={t('projects.liveAriaLabel', {
+                                    title: project.title,
+                                  })}
+                                  onClick={(e) => e.stopPropagation()}
+                                >
+                                  <ExternalIcon />
+                                </a>
+                              )}
+                            </div>
+                          </div>
 
-                        <div className={styles.tech} aria-label="Technologies used">
-                          {project.technologies.map((tech) => (
-                            <span key={tech} className={styles.techTag}>
-                              {tech}
-                            </span>
-                          ))}
+                          <p className={styles.description}>{project.description}</p>
+
+                          <div className={styles.tech} aria-label="Technologies used">
+                            {project.technologies.map((tech) => (
+                              <span key={tech} className={styles.techTag}>
+                                {tech}
+                              </span>
+                            ))}
+                          </div>
                         </div>
+                      </article>
+                    </SwiperSlide>
+                  );
+                })}
+
+                {/* See All slide */}
+                <SwiperSlide className={styles.slide}>
+                  <Link href="/projects" className={styles.seeAllCard} aria-label="See all projects">
+                    <div className={styles.seeAllContent}>
+                      <div className={styles.seeAllIcon}>
+                        <ArrowRightIcon />
                       </div>
-                    </article>
-                  </SwiperSlide>
-                );
-              })}
-            </Swiper>{' '}
-          </div>{' '}
-        </AnimatedSection>
-      </div>
-    </section>
+                      <span className={styles.seeAllLabel}>{t('projectsPage.seeAll')}</span>
+                      <span className={styles.seeAllSub}>{t('projectsPage.subtitle')}</span>
+                    </div>
+                  </Link>
+                </SwiperSlide>
+              </Swiper>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
+    </>
   );
 }
