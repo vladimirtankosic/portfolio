@@ -1,48 +1,16 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, A11y } from 'swiper/modules';
+import { Navigation, Pagination, Autoplay, A11y } from 'swiper/modules';
+import type { Swiper as SwiperType } from 'swiper';
 import { AnimatedSection } from '@/components/ui/AnimatedSection/AnimatedSection';
 import { ProjectModal } from '@/components/ui/ProjectModal/ProjectModal';
 import { projects } from '@/data/projects';
 import { useI18n } from '@/providers/I18nProvider';
 import type { Project } from '@/types';
 import styles from './Projects.module.scss';
-
-function GitHubIcon() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      aria-hidden="true"
-    >
-      <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" />
-    </svg>
-  );
-}
-
-function ExternalIcon() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-      <polyline points="15 3 21 3 21 9" />
-      <line x1="10" y1="14" x2="21" y2="3" />
-    </svg>
-  );
-}
 
 function MonitorIcon() {
   return (
@@ -64,27 +32,76 @@ function MonitorIcon() {
   );
 }
 
-function ArrowRightIcon() {
+interface ProjectCardProps {
+  project: Project;
+  onOpen: (project: Project) => void;
+}
+
+function ProjectCard({ project, onOpen }: ProjectCardProps) {
+  const thumb = project.screenshots?.[0] ?? project.image;
+
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <line x1="5" y1="12" x2="19" y2="12" />
-      <polyline points="12 5 19 12 12 19" />
-    </svg>
+    <article className={styles.card}>
+      {/* Thumbnail — only this area triggers the modal */}
+      <div
+        className={styles.imageWrapper}
+        onClick={() => onOpen(project)}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            onOpen(project);
+          }
+        }}
+        aria-label={`Open ${project.title} gallery`}
+      >
+        {thumb ? (
+          <Image
+            src={thumb}
+            alt={project.title}
+            fill
+            className={styles.image}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
+          />
+        ) : (
+          <div className={styles.imagePlaceholder}>
+            <MonitorIcon />
+            <span>{project.title}</span>
+          </div>
+        )}
+        <div className={styles.imageOverlay} aria-hidden="true" />
+      </div>
+
+      {/* Content — not interactive */}
+      <div className={styles.content}>
+        <h3 className={styles.title}>{project.title}</h3>
+        <p className={styles.description}>{project.description}</p>
+        <div className={styles.tech} aria-label="Technologies used">
+          {project.technologies.map((tech) => (
+            <span key={tech} className={styles.techTag}>
+              {tech}
+            </span>
+          ))}
+        </div>
+      </div>
+    </article>
   );
 }
 
 export function Projects() {
   const { t } = useI18n();
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const swiperRef = useRef<SwiperType | null>(null);
+
+  useEffect(() => {
+    if (!swiperRef.current) return;
+    if (selectedProject) {
+      swiperRef.current.autoplay.stop();
+    } else {
+      swiperRef.current.autoplay.start();
+    }
+  }, [selectedProject]);
 
   return (
     <>
@@ -101,11 +118,19 @@ export function Projects() {
           <AnimatedSection delay={0.1}>
             <div className={styles.swiperWrapper}>
               <Swiper
-                modules={[Navigation, Pagination, A11y]}
+                onSwiper={(swiper) => {
+                  swiperRef.current = swiper;
+                }}
+                modules={[Navigation, Pagination, Autoplay, A11y]}
                 spaceBetween={24}
                 slidesPerView={1}
                 navigation
                 pagination={{ clickable: true }}
+                autoplay={{
+                  delay: 4000,
+                  disableOnInteraction: false,
+                  pauseOnMouseEnter: true,
+                }}
                 a11y={{ enabled: true }}
                 grabCursor
                 breakpoints={{
@@ -114,99 +139,11 @@ export function Projects() {
                 }}
                 className={styles.swiper}
               >
-                {projects.map((project) => {
-                  const thumb = project.screenshots?.[0] ?? project.image;
-                  return (
-                    <SwiperSlide key={project.id} className={styles.slide}>
-                      <article className={styles.card}>
-                        {/* Full-card click area for modal */}
-                        <button
-                          className={styles.cardBtn}
-                          onClick={() => setSelectedProject(project)}
-                          aria-label={`View ${project.title} details`}
-                          tabIndex={0}
-                        />
-
-                        <div className={styles.imageWrapper}>
-                          {thumb ? (
-                            <Image
-                              src={thumb}
-                              alt={project.title}
-                              fill
-                              className={styles.image}
-                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
-                            />
-                          ) : (
-                            <div className={styles.imagePlaceholder}>
-                              <MonitorIcon />
-                              <span>{project.title}</span>
-                            </div>
-                          )}
-                          <div className={styles.imageOverlay} aria-hidden="true" />
-                        </div>
-
-                        <div className={styles.content}>
-                          <div className={styles.titleRow}>
-                            <h3 className={styles.title}>{project.title}</h3>
-                            <div className={styles.links}>
-                              {project.githubUrl && (
-                                <a
-                                  href={project.githubUrl}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className={styles.link}
-                                  aria-label={t('projects.githubAriaLabel', {
-                                    title: project.title,
-                                  })}
-                                  onClick={(e) => e.stopPropagation()}
-                                >
-                                  <GitHubIcon />
-                                </a>
-                              )}
-                              {project.liveUrl && (
-                                <a
-                                  href={project.liveUrl}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className={styles.link}
-                                  aria-label={t('projects.liveAriaLabel', {
-                                    title: project.title,
-                                  })}
-                                  onClick={(e) => e.stopPropagation()}
-                                >
-                                  <ExternalIcon />
-                                </a>
-                              )}
-                            </div>
-                          </div>
-
-                          <p className={styles.description}>{project.description}</p>
-
-                          <div className={styles.tech} aria-label="Technologies used">
-                            {project.technologies.map((tech) => (
-                              <span key={tech} className={styles.techTag}>
-                                {tech}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                      </article>
-                    </SwiperSlide>
-                  );
-                })}
-
-                {/* See All slide */}
-                <SwiperSlide className={styles.slide}>
-                  <Link href="/projects" className={styles.seeAllCard} aria-label="See all projects">
-                    <div className={styles.seeAllContent}>
-                      <div className={styles.seeAllIcon}>
-                        <ArrowRightIcon />
-                      </div>
-                      <span className={styles.seeAllLabel}>{t('projectsPage.seeAll')}</span>
-                      <span className={styles.seeAllSub}>{t('projectsPage.subtitle')}</span>
-                    </div>
-                  </Link>
-                </SwiperSlide>
+                {projects.map((project) => (
+                  <SwiperSlide key={project.id} className={styles.slide}>
+                    <ProjectCard project={project} onOpen={setSelectedProject} />
+                  </SwiperSlide>
+                ))}
               </Swiper>
             </div>
           </AnimatedSection>

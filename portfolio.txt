@@ -1,69 +1,11 @@
-- Projects
+PROJECTS
 
 naziv
 opis
 tehnologije
 screenshot
-
-- Projects page
-
-- izlistani svi projekti u gridu
-- otvara se kao modal sa screenshotovima u slajderu
-- naziv, opis i tehnologije stoje fiksirani
-
-┌─────────────────────────────────────────────────────────────┐
-│                         PROJECTS                            │
-│          Collection of selected work and case studies       │
-└─────────────────────────────────────────────────────────────┘
-
-
-┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐
-│                 │  │                 │  │                 │
-│   Screenshot    │  │   Screenshot    │  │   Screenshot    │
-│                 │  │                 │  │                 │
-├─────────────────┤  ├─────────────────┤  ├─────────────────┤
-│ Banking App     │  │ E-Commerce      │  │ Portfolio       │
-│ React • PHP     │  │ Next.js • API   │  │ React • GSAP    │
-└─────────────────┘  └─────────────────┘  └─────────────────┘
-
-
-┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐
-│                 │  │                 │  │                 │
-│   Screenshot    │  │   Screenshot    │  │   Screenshot    │
-│                 │  │                 │  │                 │
-├─────────────────┤  ├─────────────────┤  ├─────────────────┤
-│ CRM System      │  │ Dashboard       │  │ Booking App     │
-│ React • Node    │  │ Vue • Laravel   │  │ React • PHP     │
-└─────────────────┘  └─────────────────┘  └─────────────────┘
-
-- Project Modal Popup (Swiper.js)
-
-┌─────────────────────────────┐
-│                        [ X ]│
-├─────────────────────────────┤
-│                             │
-│         SCREENSHOT          │
-│                             │
-├─────────────────────────────┤
-│       ●  ○  ○  ○  ○         │
-├─────────────────────────────┤
-│                             │
-│  Banking Platform           │
-│                             │
-│  [React] [TS] [SCSS] [PHP]  │
-│                             │
-└─────────────────────────────┘
-
---------------------
-
+-------------------------------
 - proci kroz casino projects i dodati naziv, opis, tehnologije, screenshot
 - dodati sentzuu.com
-- add see all projects page
-- see all da bude u gornjem desnom uglu iznad slajdera projekata na homepage
-- linkovi na projects page da vode kao i na homepage
-- projects grid divovi da budu iste visine i sirine
 
-- da vise izgleda kao custom tema ceo template
-- da bude code editor/programerska tema sa blagim fokusom na gaming/casino industriju
-- forma da se ne zumira
-- action buttons kao na wolt, da budu u ravni sa back to top btn
+- da bude code editor programerska tema sa blagim fokusom na gaming/casino industriju

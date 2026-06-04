@@ -71,20 +71,14 @@
   "projects": {
     "tag": "Projekti",
     "title": "Odabrani radovi",
-    "subtitle": "Izbor projekata koje sam izgradio. Više na mom GitHub-u.",
-    "githubAriaLabel": "Pogledaj {title} na GitHub-u",
-    "liveAriaLabel": "Pogledaj live demo od {title}",
+    "subtitle": "Izbor projekata koje sam izgradio.",
+    "viewScreenshots": "Pogledaj slike",
     "items": [
       {
         "title": "Casino Lobby Klon",
         "description": "Aplikacija casino lobbija sa listingom igara, filtriranjem po kategorijama, funkcijom pretrage i paginacijom. Izgrađena sa Next.js i integrisana sa REST API-jem za dinamičke podatke o igrama."
       }
     ]
-  },
-  "projectsPage": {
-    "title": "PROJEKTI",
-    "subtitle": "Kolekcija odabranih radova i studija slučaja",
-    "seeAll": "Svi Projekti"
   },
   "highlights": {
     "tag": "Tehničke Prednosti",

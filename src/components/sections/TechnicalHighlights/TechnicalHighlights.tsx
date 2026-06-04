@@ -6,7 +6,7 @@ import { useI18n } from '@/providers/I18nProvider';
 import styles from './TechnicalHighlights.module.scss';
 
 export function TechnicalHighlights() {
-  const { t, messages } = useI18n();
+  const { t, lang } = useI18n();
 
   return (
     <section id="highlights" className={styles.section} aria-labelledby="highlights-title">
@@ -21,7 +21,7 @@ export function TechnicalHighlights() {
 
         <div className={styles.grid}>
           {technicalHighlights.map((highlight, i) => {
-            const translated = messages.highlights.items[i];
+            const translated = lang.highlights.items[i];
             return (
               <AnimatedSection key={highlight.title} delay={i * 0.07}>
                 <div className={styles.card}>

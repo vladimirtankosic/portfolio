@@ -71,20 +71,14 @@
   "projects": {
     "tag": "Projects",
     "title": "Selected work",
-    "subtitle": "A selection of projects I've built. More on my GitHub.",
-    "githubAriaLabel": "View {title} on GitHub",
-    "liveAriaLabel": "View live demo of {title}",
+    "subtitle": "A selection of projects I've built.",
+    "viewScreenshots": "View Screenshots",
     "items": [
       {
         "title": "Casino Lobby Clone",
         "description": "A casino lobby application featuring game listing, category filtering, search functionality and pagination. Built with Next.js and integrated with a REST API for dynamic game data."
       }
     ]
-  },
-  "projectsPage": {
-    "title": "PROJECTS",
-    "subtitle": "Collection of selected work and case studies",
-    "seeAll": "See All Projects"
   },
   "highlights": {
     "tag": "Technical Strengths",

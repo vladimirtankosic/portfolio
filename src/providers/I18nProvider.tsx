@@ -1,27 +1,27 @@
 'use client';
 
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
-import en from '../../messages/en.json';
-import sr from '../../messages/sr.json';
+import en from '../../lang/en.json';
+import sr from '../../lang/sr.json';
 
 export type Locale = 'en' | 'sr';
 
-type Messages = typeof en;
+type Lang = typeof en;
 
-const translations: Record<Locale, Messages> = { en, sr };
+const translations: Record<Locale, Lang> = { en, sr };
 
 interface I18nContextValue {
   locale: Locale;
   setLocale: (locale: Locale) => void;
   t: (key: string, vars?: Record<string, string | number>) => string;
-  messages: Messages;
+  lang: Lang;
 }
 
 const I18nContext = createContext<I18nContextValue>({
   locale: 'en',
   setLocale: () => {},
   t: (key) => key,
-  messages: en,
+  lang: en,
 });
 
 function getNestedValue(obj: unknown, path: string): unknown {
@@ -65,7 +65,7 @@ export function I18nProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <I18nContext.Provider value={{ locale, setLocale, t, messages: translations[locale] }}>
+    <I18nContext.Provider value={{ locale, setLocale, t, lang: translations[locale] }}>
       {children}
     </I18nContext.Provider>
   );

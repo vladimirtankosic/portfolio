@@ -11,6 +11,7 @@ import styles from './ProjectModal.module.scss';
 
 interface ProjectModalProps {
   project: Project | null;
+  initialSlide?: number;
   onClose: () => void;
 }
 
@@ -21,8 +22,9 @@ function CloseIcon() {
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth="2"
+      strokeWidth="2.5"
       strokeLinecap="round"
+      strokeLinejoin="round"
       aria-hidden="true"
     >
       <line x1="18" y1="6" x2="6" y2="18" />
@@ -51,7 +53,7 @@ function MonitorIcon() {
   );
 }
 
-export function ProjectModal({ project, onClose }: ProjectModalProps) {
+export function ProjectModal({ project, initialSlide = 0, onClose }: ProjectModalProps) {
   const [mounted, setMounted] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
@@ -60,7 +62,6 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
     setMounted(true);
   }, []);
 
-  // Lock body scroll when open
   useEffect(() => {
     if (!project) return;
     const prev = document.body.style.overflow;
@@ -70,7 +71,6 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
     };
   }, [project]);
 
-  // ESC key
   const handleEsc = useCallback(
     (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
@@ -84,7 +84,6 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
     return () => document.removeEventListener('keydown', handleEsc);
   }, [project, handleEsc]);
 
-  // Focus trap
   useEffect(() => {
     if (!project || !modalRef.current) return;
     const modal = modalRef.current;
@@ -133,7 +132,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
           onClick={onClose}
           aria-modal="true"
           role="dialog"
-          aria-labelledby="modal-title"
+          aria-label={`${project.title} screenshots`}
         >
           <motion.div
             ref={modalRef}
@@ -144,17 +143,15 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Close */}
             <button
               ref={closeButtonRef}
               className={styles.closeButton}
               onClick={onClose}
-              aria-label="Close project modal"
+              aria-label="Close gallery"
             >
               <CloseIcon />
             </button>
 
-            {/* Swiper screenshots */}
             <div className={styles.swiperWrapper}>
               {screenshots.length > 0 ? (
                 <Swiper
@@ -162,8 +159,10 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                   pagination={{ clickable: true }}
                   keyboard={{ enabled: true }}
                   mousewheel={{ enabled: true, forceToAxis: true, releaseOnEdges: true }}
+                  grabCursor
                   spaceBetween={0}
                   slidesPerView={1}
+                  initialSlide={initialSlide}
                   loop={screenshots.length > 1}
                   a11y={{ enabled: true }}
                   className={styles.swiper}
@@ -176,7 +175,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                           alt={`${project.title} screenshot ${i + 1}`}
                           fill
                           className={styles.image}
-                          sizes="(max-width: 640px) 100vw, 680px"
+                          sizes="(max-width: 640px) 100vw, 760px"
                           priority={i === 0}
                         />
                       </div>
@@ -189,21 +188,6 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                   <span>{project.title}</span>
                 </div>
               )}
-            </div>
-
-            {/* Fixed content */}
-            <div className={styles.content}>
-              <h2 id="modal-title" className={styles.title}>
-                {project.title}
-              </h2>
-              <p className={styles.description}>{project.description}</p>
-              <div className={styles.tech} aria-label="Technologies used">
-                {project.technologies.map((tech) => (
-                  <span key={tech} className={styles.techTag}>
-                    {tech}
-                  </span>
-                ))}
-              </div>
             </div>
           </motion.div>
         </motion.div>

@@ -21,7 +21,7 @@ function parseHighlights(text: string, className: string): ReactNode[] {
 
 export function About() {
   const years = getYearsOfExperience();
-  const { t, messages } = useI18n();
+  const { t, lang } = useI18n();
 
   return (
     <section id="about" className={styles.section} aria-labelledby="about-title">
@@ -91,7 +91,7 @@ export function About() {
 
               <p className={styles.interestsTitle}>{t('about.interestsTitle')}</p>
               <div className={styles.interests}>
-                {messages.about.interests.map((interest) => (
+                {lang.about.interests.map((interest) => (
                   <span key={interest} className={styles.interestTag}>
                     {interest}
                   </span>

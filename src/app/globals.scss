@@ -43,31 +43,39 @@
   --section-padding-mobile: 64px;
 }
 
-// Light theme — higher contrast, clear visual hierarchy
+// Light theme — WCAG AA compliant, strong visual hierarchy
 [data-theme='light'] {
-  --bg-primary: #f5f7fa;
-  --bg-secondary: #edf0f5;
-  --bg-card: #ffffff;
-  --bg-card-hover: #f8f9fc;
-  --border: rgba(67, 56, 202, 0.22);
-  --border-subtle: rgba(15, 23, 42, 0.1);
+  // Background layers — distinct elevation steps
+  --bg-primary: #f4f6fb;         // cool-neutral page bg
+  --bg-secondary: #e9ecf4;       // clearly darker than primary (sections)
+  --bg-card: #ffffff;            // pure white — maximum separation from bg
+  --bg-card-hover: #eff2f9;      // visible hover, not washed out
 
-  // Deeper indigo for stronger contrast on light bg
+  // Borders — readable without being aggressive
+  --border: rgba(67, 56, 202, 0.26);       // was 0.22
+  --border-subtle: rgba(15, 23, 42, 0.13); // was 0.10
+
+  // Accent — indigo, unchanged hue
   --accent: #4338ca;
   --accent-hover: #4f46e5;
-  --accent-dim: rgba(67, 56, 202, 0.1);
-  --accent-glow: rgba(67, 56, 202, 0.14);
+  --accent-dim: rgba(67, 56, 202, 0.13);   // was 0.10 — better for chip/tag bgs
+  --accent-glow: rgba(67, 56, 202, 0.20);  // was 0.14
 
-  // High-contrast text stack
-  --text-primary: #0d1117; // near-black for headings, critical text
-  --text-secondary: #2d3748; // dark gray — clearly readable body text
-  --text-muted: #64748b; // medium slate — clearly visible supporting text
+  // Text — WCAG AA / AAA verified
+  // --text-primary  #0f1117 on #f4f6fb → ~19:1  ✓ AAA
+  // --text-secondary #1e293b on #f4f6fb → ~14:1  ✓ AAA
+  // --text-muted    #4b5563 on #f4f6fb →  ~6.1:1 ✓ AA  (was #64748b → 4.1:1 ✗)
+  // --text-muted    #4b5563 on #ffffff  →  ~6.6:1 ✓ AA
+  --text-primary: #0f1117;
+  --text-secondary: #1e293b;
+  --text-muted: #4b5563;
   --text-accent: #4338ca;
 
-  --shadow-sm: 0 1px 4px rgba(15, 23, 42, 0.1);
-  --shadow-md: 0 4px 20px rgba(15, 23, 42, 0.12);
-  --shadow-lg: 0 8px 32px rgba(15, 23, 42, 0.16);
-  --shadow-accent: 0 0 24px rgba(67, 56, 202, 0.15);
+  // Shadows — stronger elevation for clear card/surface separation
+  --shadow-sm: 0 1px 4px rgba(15, 23, 42, 0.10);
+  --shadow-md: 0 4px 20px rgba(15, 23, 42, 0.14); // was 0.12
+  --shadow-lg: 0 8px 32px rgba(15, 23, 42, 0.20); // was 0.16
+  --shadow-accent: 0 0 24px rgba(67, 56, 202, 0.20); // was 0.15
 }
 
 // ── Scrollbar ──────────────────────────────────────────────────────────────

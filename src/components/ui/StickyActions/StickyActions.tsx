@@ -8,8 +8,6 @@ function DownloadIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="15"
-      height="15"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -29,8 +27,6 @@ function MailIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="15"
-      height="15"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -60,22 +56,25 @@ export function StickyActions() {
   };
 
   return (
-    // Wrapper: handles fixed positioning only — never animated so CSS transform is stable
+    // Wrapper: CSS positioning only — never animated, keeps transform stable
     <div className={styles.wrapper} aria-label="Quick actions">
       <motion.div
         className={styles.container}
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.55, delay: 1.4, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.45, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
       >
         <motion.a
           href="/cv/VladimirTankosic-CV.pdf"
           download
           className={styles.btn}
           aria-label={t('stickyActions.downloadCv')}
+          whileHover={{ scale: 0.97 }}
           whileTap={{ scale: 0.94 }}
         >
-          <DownloadIcon />
+          <span className={styles.iconWrap}>
+            <DownloadIcon />
+          </span>
           <span className={styles.label}>{t('stickyActions.downloadCv')}</span>
         </motion.a>
 
@@ -83,11 +82,14 @@ export function StickyActions() {
 
         <motion.button
           onClick={scrollToContact}
-          className={`${styles.btn} ${styles.btnContact}`}
+          className={`${styles.btn} ${styles.btnPrimary}`}
           aria-label={t('stickyActions.contactMe')}
+          whileHover={{ scale: 0.97 }}
           whileTap={{ scale: 0.94 }}
         >
-          <MailIcon />
+          <span className={styles.iconWrap}>
+            <MailIcon />
+          </span>
           <span className={styles.label}>{t('stickyActions.contactMe')}</span>
         </motion.button>
       </motion.div>
