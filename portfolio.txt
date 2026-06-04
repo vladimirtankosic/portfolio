@@ -9,3 +9,4 @@ screenshot
 - dodati sentzuu.com
 
 - da bude code editor programerska tema sa blagim fokusom na gaming/casino industriju
+- content

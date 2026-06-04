@@ -115,12 +115,25 @@
     border-radius: 100px;
     font-size: 0.8rem;
     color: rgba(255, 255, 255, 0.75);
+    // Remove gap — spacing between icon and label is handled via label margin-left transition
+    gap: 0;
+    transition:
+      background 0.2s ease,
+      box-shadow 0.2s ease,
+      color 0.2s ease;
 
     &:hover {
       background: rgba(255, 255, 255, 0.07);
       border: none;
       box-shadow: none;
       transform: none;
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    // Active: subtle highlight, no heavy fill — Wolt-style
+    &.active {
+      background: rgba(255, 255, 255, 0.05);
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1);
       color: rgba(255, 255, 255, 0.95);
     }
 
@@ -131,6 +144,19 @@
         background: rgba(67, 56, 202, 0.07);
         color: var(--text-primary);
       }
+    }
+
+    [data-theme='light'] &.active {
+      background: rgba(99, 102, 241, 0.06);
+      box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.18);
+      color: var(--text-primary);
+    }
+
+    // Reveal label when button is active
+    &.active .label {
+      max-width: 150px;
+      opacity: 1;
+      margin-left: 6px;
     }
   }
 }
@@ -161,6 +187,13 @@
       color: #a5b4fc;
     }
 
+    // Active: stronger accent ring, still transparent background
+    &.active {
+      background: rgba(99, 102, 241, 0.08);
+      box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.28);
+      color: #a5b4fc;
+    }
+
     [data-theme='light'] & {
       color: var(--text-accent);
 
@@ -168,6 +201,12 @@
         background: rgba(67, 56, 202, 0.08);
         color: var(--accent);
       }
+    }
+
+    [data-theme='light'] &.active {
+      background: rgba(99, 102, 241, 0.07);
+      box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.22);
+      color: var(--accent);
     }
   }
 }
@@ -197,6 +236,19 @@
 .label {
   font-weight: 500;
   letter-spacing: 0.01em;
+
+  @include respond-to(md) {
+    // Hidden by default on mobile — revealed via .active on parent button
+    max-width: 0;
+    opacity: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    margin-left: 0;
+    transition:
+      max-width 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.2s ease,
+      margin-left 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  }
 }
 
 // ── Divider — pill separator, mobile only ─────────────────────────────────────

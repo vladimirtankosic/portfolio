@@ -1,8 +1,12 @@
 'use client';
 
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useI18n } from '@/providers/I18nProvider';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
 import styles from './StickyActions.module.scss';
+
+type ActionId = 'cv' | 'contact';
 
 function DownloadIcon() {
   return (
@@ -43,8 +47,23 @@ function MailIcon() {
 
 export function StickyActions() {
   const { t } = useI18n();
+  const isMobile = useMediaQuery('(max-width: 767px)');
+  const [activeId, setActiveId] = useState<ActionId | null>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
-  const scrollToContact = () => {
+  // Dismiss on outside tap — listener only active while a button is expanded
+  useEffect(() => {
+    if (!activeId) return;
+    const dismiss = (e: PointerEvent) => {
+      if (wrapperRef.current && !wrapperRef.current.contains(e.target as Node)) {
+        setActiveId(null);
+      }
+    };
+    document.addEventListener('pointerdown', dismiss);
+    return () => document.removeEventListener('pointerdown', dismiss);
+  }, [activeId]);
+
+  const scrollToContact = useCallback(() => {
     const el = document.getElementById('contact');
     if (!el) return;
     const headerHeight = parseInt(
@@ -53,11 +72,41 @@ export function StickyActions() {
     );
     const top = el.getBoundingClientRect().top + window.scrollY - (headerHeight || 68);
     window.scrollTo({ top, behavior: 'smooth' });
-  };
+  }, []);
+
+  // Tap: execute action immediately + expand label. Re-tap collapses label (no duplicate action).
+  const handleCvClick = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>) => {
+      if (!isMobile) return;
+      if (activeId === 'cv') {
+        e.preventDefault(); // already downloaded — just close
+        setActiveId(null);
+      } else {
+        setActiveId('cv'); // download proceeds via native anchor; label expands
+      }
+    },
+    [isMobile, activeId],
+  );
+
+  const handleContactClick = useCallback(() => {
+    if (!isMobile) {
+      scrollToContact();
+      return;
+    }
+    if (activeId === 'contact') {
+      setActiveId(null); // already scrolled — just close
+    } else {
+      setActiveId('contact'); // scroll happens + label expands
+      scrollToContact();
+    }
+  }, [isMobile, activeId, scrollToContact]);
+
+  const cvActive = activeId === 'cv';
+  const contactActive = activeId === 'contact';
 
   return (
     // Wrapper: CSS positioning only — never animated, keeps transform stable
-    <div className={styles.wrapper} aria-label="Quick actions">
+    <div ref={wrapperRef} className={styles.wrapper} aria-label="Quick actions">
       <motion.div
         className={styles.container}
         initial={{ opacity: 0, y: 12 }}
@@ -67,8 +116,10 @@ export function StickyActions() {
         <motion.a
           href="/cv/VladimirTankosic-CV.pdf"
           download
-          className={styles.btn}
+          className={`${styles.btn}${cvActive ? ` ${styles.active}` : ''}`}
           aria-label={t('stickyActions.downloadCv')}
+          aria-expanded={isMobile ? cvActive : undefined}
+          onClick={handleCvClick}
           whileHover={{ scale: 0.97 }}
           whileTap={{ scale: 0.94 }}
         >
@@ -81,9 +132,10 @@ export function StickyActions() {
         <span className={styles.divider} aria-hidden="true" />
 
         <motion.button
-          onClick={scrollToContact}
-          className={`${styles.btn} ${styles.btnPrimary}`}
+          onClick={handleContactClick}
+          className={`${styles.btn} ${styles.btnPrimary}${contactActive ? ` ${styles.active}` : ''}`}
           aria-label={t('stickyActions.contactMe')}
+          aria-expanded={isMobile ? contactActive : undefined}
           whileHover={{ scale: 0.97 }}
           whileTap={{ scale: 0.94 }}
         >
