@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useSyncExternalStore } from 'react';
 import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -8,6 +8,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Keyboard, Mousewheel, A11y } from 'swiper/modules';
 import type { Project } from '@/types';
 import styles from './ProjectModal.module.scss';
+
+const subscribe = () => () => {};
 
 interface ProjectModalProps {
   project: Project | null;
@@ -54,13 +56,9 @@ function MonitorIcon() {
 }
 
 export function ProjectModal({ project, initialSlide = 0, onClose }: ProjectModalProps) {
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(subscribe, () => true, () => false);
   const modalRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   useEffect(() => {
     if (!project) return;
