@@ -12,6 +12,8 @@
   border-radius: var(--radius-md);
   cursor: pointer;
   border: none;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
   transition:
     transform var(--transition-fast),
     box-shadow var(--transition-fast),
@@ -20,7 +22,10 @@
     color var(--transition-fast);
   white-space: nowrap;
 
-  @include focus-ring;
+  &:focus,
+  &:focus-visible {
+    outline: none;
+  }
 
   &:active {
     transform: scale(0.97);

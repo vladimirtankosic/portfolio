@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useCallback, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -71,19 +71,6 @@ export function ProjectModal({ project, initialSlide = 0, onClose }: ProjectModa
     };
   }, [project]);
 
-  const handleEsc = useCallback(
-    (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
-    },
-    [onClose],
-  );
-
-  useEffect(() => {
-    if (!project) return;
-    document.addEventListener('keydown', handleEsc);
-    return () => document.removeEventListener('keydown', handleEsc);
-  }, [project, handleEsc]);
-
   useEffect(() => {
     if (!project || !modalRef.current) return;
     const modal = modalRef.current;
@@ -129,7 +116,6 @@ export function ProjectModal({ project, initialSlide = 0, onClose }: ProjectModa
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.25, ease: 'easeOut' }}
-          onClick={onClose}
           aria-modal="true"
           role="dialog"
           aria-label={`${project.title} screenshots`}

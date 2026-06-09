@@ -40,19 +40,26 @@
   border-radius: 50%;
   color: rgba(255, 255, 255, 0.9);
   cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
   transition:
     transform 200ms ease,
     background 200ms ease,
     border-color 200ms ease,
     box-shadow 200ms ease;
 
-  @include focus-ring;
+  &:focus,
+  &:focus-visible {
+    outline: none;
+  }
 
-  &:hover {
-    transform: scale(1.08);
-    background: rgba(0, 0, 0, 0.68);
-    border-color: rgba(255, 255, 255, 0.28);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      transform: scale(1.08);
+      background: rgba(0, 0, 0, 0.68);
+      border-color: rgba(255, 255, 255, 0.28);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    }
   }
 
   &:active {

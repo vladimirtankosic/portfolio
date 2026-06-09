@@ -206,6 +206,8 @@
   font-size: 0.9375rem;
   font-weight: 600;
   cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -215,7 +217,10 @@
     transform var(--transition-fast),
     box-shadow var(--transition-fast);
 
-  @include focus-ring;
+  &:focus,
+  &:focus-visible {
+    outline: none;
+  }
 
   &:hover:not(:disabled) {
     background: var(--accent-hover);

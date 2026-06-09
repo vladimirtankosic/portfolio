@@ -77,10 +77,12 @@
       font-weight: 700;
     }
 
-    &:hover {
-      background: var(--accent-dim);
-      border-color: var(--border);
-      color: var(--text-accent);
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background: var(--accent-dim);
+        border-color: var(--border);
+        color: var(--text-accent);
+      }
     }
 
     @include respond-to(lg) {
@@ -132,6 +134,19 @@
     opacity: 1;
     transform: scale(1.4);
   }
+
+  @media (hover: none) and (pointer: coarse) {
+    :global(.swiper-slide) {
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    :global(.swiper-slide:focus),
+    :global(.swiper-slide:focus-visible) {
+      outline: none;
+      box-shadow: none;
+    }
+  }
 }
 
 .slide {
@@ -149,20 +164,33 @@
   width: 100%;
   transition:
     border-color var(--transition-base),
-    box-shadow var(--transition-base),
-    transform var(--transition-base);
+    box-shadow var(--transition-base);
 
-  &:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-accent);
+  @media (hover: hover) and (pointer: fine) {
+    transition:
+      border-color var(--transition-base),
+      box-shadow var(--transition-base),
+      transform var(--transition-base);
+
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-accent);
+    }
+
+    &:hover .image {
+      transform: scale(1.04);
+    }
+
+    &:hover .imageOverlay {
+      opacity: 1;
+    }
   }
 
-  &:hover .image {
-    transform: scale(1.04);
-  }
-
-  &:hover .imageOverlay {
-    opacity: 1;
+  @media (hover: none) and (pointer: coarse) {
+    &:hover {
+      box-shadow: none;
+      border-color: var(--border-subtle);
+    }
   }
 }
 
@@ -176,11 +204,16 @@
   background: var(--bg-primary);
   cursor: pointer;
   flex-shrink: 0;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .image {
   object-fit: cover;
-  transition: transform var(--transition-slow);
+
+  @media (hover: hover) and (pointer: fine) {
+    transition: transform var(--transition-slow);
+  }
 }
 
 .imagePlaceholder {
@@ -210,7 +243,10 @@
   background: rgba(99, 102, 241, 0.06);
   opacity: 0;
   pointer-events: none;
-  transition: opacity var(--transition-base);
+
+  @media (hover: hover) and (pointer: fine) {
+    transition: opacity var(--transition-base);
+  }
 }
 
 // ── Card content (non-interactive) ────────────────────────────────────────────
