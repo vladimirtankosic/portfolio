@@ -1,0 +1,124 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Floating header action buttons — Instagram iOS style
+// Two separate fixed groups: one anchored left, one anchored right
+// Appear just below the header when user scrolls past the threshold
+// ─────────────────────────────────────────────────────────────────────────────
+
+// ── Shared positioning mixin ──────────────────────────────────────────────────
+
+%floatBase {
+  position: fixed;
+  top: calc(var(--header-height) + 10px);
+  z-index: 98; // below Header (100) so it doesn't fight the nav overlay
+  will-change: transform;
+}
+
+// ── Left anchor ───────────────────────────────────────────────────────────────
+
+.floatLeft {
+  @extend %floatBase;
+  left: 16px;
+
+  @include respond-to(sm) {
+    left: 12px;
+  }
+}
+
+// ── Right anchor ──────────────────────────────────────────────────────────────
+
+.floatRight {
+  @extend %floatBase;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  @include respond-to(sm) {
+    right: 12px;
+    gap: 6px;
+  }
+}
+
+// ── Circular glass button ─────────────────────────────────────────────────────
+
+.floatBtn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 0.5px solid rgba(255, 255, 255, 0.13);
+  background: rgba(10, 13, 22, 0.76);
+  backdrop-filter: blur(18px) saturate(1.5);
+  -webkit-backdrop-filter: blur(18px) saturate(1.5);
+  color: rgba(255, 255, 255, 0.84);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+  box-shadow:
+    0 2px 14px rgba(0, 0, 0, 0.24),
+    0 1px 4px rgba(0, 0, 0, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  transition:
+    background 0.16s ease,
+    border-color 0.16s ease,
+    color 0.16s ease;
+
+  &:hover {
+    background: rgba(16, 20, 34, 0.88);
+    border-color: rgba(255, 255, 255, 0.18);
+    color: rgba(255, 255, 255, 0.96);
+  }
+
+  [data-theme='light'] & {
+    background: rgba(255, 255, 255, 0.88);
+    border-color: rgba(15, 23, 42, 0.1);
+    color: var(--text-primary);
+    box-shadow:
+      0 2px 14px rgba(15, 23, 42, 0.12),
+      0 1px 4px rgba(15, 23, 42, 0.07),
+      inset 0 1px 0 rgba(255, 255, 255, 0.95);
+
+    &:hover {
+      background: rgba(245, 247, 250, 0.97);
+      border-color: rgba(15, 23, 42, 0.14);
+    }
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+}
+
+// ── Toast: appears above the right group ─────────────────────────────────────
+
+.toast {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  right: 0;
+  white-space: nowrap;
+  padding: 5px 14px;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  pointer-events: none;
+  letter-spacing: 0.01em;
+
+  background: rgba(10, 13, 22, 0.92);
+  backdrop-filter: blur(14px) saturate(1.4);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  border: 0.5px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.28);
+
+  [data-theme='light'] & {
+    background: rgba(15, 23, 42, 0.9);
+    border-color: rgba(255, 255, 255, 0.07);
+    color: #fff;
+  }
+}

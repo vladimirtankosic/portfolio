@@ -1,45 +1,68 @@
 @use '../../../styles/variables' as *;
 @use '../../../styles/mixins' as *;
 
+// Glass pill container — matches the unified glassmorphism system
+
 .switcher {
   display: flex;
   align-items: center;
-  gap: 2px;
+  height: 38px;
+  border-radius: 100px;
+  padding: 0 4px;
+  gap: 0;
+
+  @include glass;
 }
 
 .item {
   display: flex;
   align-items: center;
-  gap: 2px;
 }
 
 .divider {
   display: block;
   width: 1px;
   height: 12px;
-  background: var(--border-subtle);
+  background: rgba(255, 255, 255, 0.12);
   margin: 0 2px;
+
+  [data-theme='light'] & {
+    background: rgba(15, 23, 42, 0.12);
+  }
 }
 
 .btn {
-  padding: 5px 8px;
-  font-size: 0.75rem;
+  height: 30px;
+  padding: 0 10px;
+  font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 0.05em;
-  color: var(--text-muted);
-  border-radius: var(--radius-sm);
-  transition:
-    color var(--transition-fast),
-    background var(--transition-fast);
+  color: rgba(255, 255, 255, 0.50);
+  border-radius: 100px;
+  cursor: pointer;
+  transition: color 0.15s ease, background 0.15s ease;
 
   &:hover {
-    color: var(--text-primary);
-    background: var(--accent-dim);
+    color: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.08);
   }
 
+  [data-theme='light'] & {
+    color: var(--text-muted);
+
+    &:hover {
+      color: var(--text-primary);
+      background: var(--accent-dim);
+    }
+  }
 }
 
 .active {
-  color: var(--text-accent);
-  background: var(--accent-dim);
+  color: rgba(255, 255, 255, 0.95) !important;
+  background: rgba(255, 255, 255, 0.11) !important;
+
+  [data-theme='light'] & {
+    color: var(--text-accent) !important;
+    background: var(--accent-dim) !important;
+  }
 }

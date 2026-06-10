@@ -202,7 +202,7 @@
   background: var(--accent);
   color: #fff;
   border: none;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-pill);
   font-size: 0.9375rem;
   font-weight: 600;
   cursor: pointer;
@@ -225,11 +225,11 @@
   &:hover:not(:disabled) {
     background: var(--accent-hover);
     box-shadow: var(--shadow-accent);
-    transform: translateY(-1px);
+    transform: translateY(-2px);
   }
 
   &:active:not(:disabled) {
-    transform: translateY(0);
+    transform: scale(0.96);
   }
 
   &:disabled {

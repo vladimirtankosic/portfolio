@@ -4,7 +4,10 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './BackToTop.module.scss';
 
-const SCROLL_THRESHOLD = 0.3; // 30% of total page height
+const SCROLL_THRESHOLD = 0.3;
+
+const SPRING_TAP = { type: 'spring' as const, stiffness: 580, damping: 28 };
+const SPRING_HOVER = { type: 'spring' as const, stiffness: 360, damping: 24 };
 
 export function BackToTop() {
   const [visible, setVisible] = useState(false);
@@ -15,7 +18,6 @@ export function BackToTop() {
       const total = document.documentElement.scrollHeight - window.innerHeight;
       setVisible(total > 0 && scrolled / total >= SCROLL_THRESHOLD);
     };
-
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener('scroll', onScroll);
@@ -36,8 +38,8 @@ export function BackToTop() {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.7, y: 16 }}
           transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.93 }}
+          whileHover={{ y: -2, transition: SPRING_HOVER }}
+          whileTap={{ scale: 0.96, y: 0, transition: SPRING_TAP }}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

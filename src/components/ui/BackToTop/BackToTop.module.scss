@@ -1,11 +1,12 @@
 @use '../../../styles/variables' as *;
 @use '../../../styles/mixins' as *;
 
-// Mobile action-bar clearance math (kept in sync with StickyActions):
-//   pill bottom  : 16px + safe-area
-//   pill height  : 4px padding + 44px button + 4px padding = 52px
-//   gap          : 10px
-//   BackToTop bottom = 16 + 52 + 10 = 78px (+ safe-area)
+// ── Alignment math (mobile, kept in sync with StickyActions pill):
+//   pill bottom  : 20px + safe-area
+//   pill height  : 6px padding + 52px button + 6px padding = 64px
+//   pill button center from bottom: 20 + 6 + 26 = 52px
+//   BackToTop height: 42px (mobile) → center at bottom + 21px
+//   For same vertical center: bottom = 52 - 21 = 31px + safe-area
 
 .btn {
   position: fixed;
@@ -16,29 +17,22 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  border: 1px solid var(--border);
-  background: var(--bg-card);
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.78);
   cursor: pointer;
-  box-shadow: var(--shadow-md);
+  will-change: transform;
 
   @include flex-center;
-  transition:
-    color var(--transition-fast),
-    background var(--transition-fast),
-    border-color var(--transition-fast),
-    box-shadow var(--transition-fast);
+  @include glass;
 
-  &:hover {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: #fff;
-    box-shadow: var(--shadow-accent);
+  transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+
+  [data-theme='light'] & {
+    color: var(--text-secondary);
   }
 
-  // Mobile: float above the StickyActions pill bar
+  // Mobile: same visual baseline as StickyActions pill
   @include respond-to(md) {
-    bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+    bottom: calc(31px + env(safe-area-inset-bottom, 0px));
     right: 16px;
     width: 42px;
     height: 42px;

@@ -1,6 +1,11 @@
 @use '../../../styles/variables' as *;
 @use '../../../styles/mixins' as *;
 
+// ─────────────────────────────────────────────────────────────────────────────
+// Floating header — each element is an independent glass pill / circle.
+// The <header> itself is transparent; glass styling lives on child elements.
+// ─────────────────────────────────────────────────────────────────────────────
+
 .header {
   position: fixed;
   top: 0;
@@ -8,50 +13,58 @@
   right: 0;
   z-index: 100;
   height: var(--header-height);
-  transition:
-    background-color var(--transition-slow),
-    backdrop-filter var(--transition-slow),
-    border-color var(--transition-slow);
-}
-
-.scrolled {
-  background: rgba(8, 12, 20, 0.88);
-  backdrop-filter: blur(16px) saturate(1.4);
-  -webkit-backdrop-filter: blur(16px) saturate(1.4);
-  border-bottom: 1px solid var(--border-subtle);
-
-  [data-theme='light'] & {
-    background: rgba(245, 247, 250, 0.9);
-  }
+  // Transparent — no background on the bar itself
+  background: transparent;
+  pointer-events: none; // allow clicks to pass through empty header area
 }
 
 .inner {
   @include container;
   @include flex-between;
   height: 100%;
+  pointer-events: none; // pass-through; interactive children re-enable
 }
 
+// ── Logo glass pill ───────────────────────────────────────────────────────────
+
 .logo {
-  font-size: 1.125rem;
+  pointer-events: all;
+  display: flex;
+  align-items: center;
+  height: 38px;
+  padding: 0 16px;
+  font-size: 1.0625rem;
   font-weight: 700;
   letter-spacing: -0.04em;
-  color: var(--text-primary);
-  transition: color var(--transition-fast);
+  color: rgba(255, 255, 255, 0.92);
+  border-radius: 100px;
+  text-decoration: none;
+  will-change: transform;
+
+  @include glass;
 
   span {
     color: var(--accent);
   }
 
-  &:hover {
-    color: var(--text-accent);
+  [data-theme='light'] & {
+    color: var(--text-primary);
   }
 }
 
-// Desktop nav — hidden only below lg (1024px)
+// ── Desktop navigation glass pill ─────────────────────────────────────────────
+
 .nav {
+  pointer-events: all;
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 2px;
+  height: 38px;
+  padding: 4px;
+  border-radius: 100px;
+  will-change: transform;
+
+  @include glass;
 
   @include respond-to(lg) {
     display: none;
@@ -59,106 +72,168 @@
 }
 
 .navLink {
-  padding: 8px 14px;
+  height: 30px;
+  padding: 0 14px;
   font-size: 0.875rem;
   font-weight: 500;
-  color: var(--text-secondary);
-  border-radius: var(--radius-sm);
+  color: rgba(255, 255, 255, 0.6);
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  cursor: pointer;
+  will-change: transform;
   transition:
-    color var(--transition-fast),
-    background var(--transition-fast);
+    color 0.15s ease,
+    background 0.15s ease;
 
   &:hover {
-    color: var(--text-primary);
-    background: var(--accent-dim);
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  [data-theme='light'] & {
+    color: var(--text-secondary);
+
+    &:hover {
+      color: var(--text-primary);
+      background: var(--accent-dim);
+    }
   }
 }
 
 .active {
-  color: var(--text-accent);
-  background: var(--accent-dim);
+  color: rgba(255, 255, 255, 0.95) !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+
+  [data-theme='light'] & {
+    color: var(--text-accent) !important;
+    background: var(--accent-dim) !important;
+  }
 }
+
+// ── Right controls group ──────────────────────────────────────────────────────
 
 .right {
+  pointer-events: all;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 
-// Mobile hamburger — only show below lg (1024px)
+// ── Mobile hamburger glass circle ─────────────────────────────────────────────
+
 .mobileMenuBtn {
   display: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  color: rgba(255, 255, 255, 0.78);
+  cursor: pointer;
   @include flex-center;
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius-md);
-  color: var(--text-secondary);
-  border: 1px solid var(--border-subtle);
-  transition:
-    color var(--transition-fast),
-    background var(--transition-fast),
-    border-color var(--transition-fast);
+  will-change: transform;
 
-  &:hover {
-    color: var(--text-primary);
-    background: var(--accent-dim);
-    border-color: var(--border);
-  }
+  @include glass;
 
   @include respond-to(lg) {
     display: flex;
   }
 
+  [data-theme='light'] & {
+    color: var(--text-secondary);
+  }
+
   svg {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
   }
 }
 
+// ── Floating mobile nav panel ─────────────────────────────────────────────────
+// Single unified glass card expanding from the hamburger button (top-right)
+
 .mobileMenu {
   position: fixed;
-  top: var(--header-height);
-  left: 0;
-  right: 0;
-  background: var(--bg-secondary);
-  border-bottom: 1px solid var(--border-subtle);
-  padding: 12px 0 16px;
+  top: calc(var(--header-height) + 10px);
+  right: 16px;
   z-index: 99;
-  box-shadow: var(--shadow-md);
+  min-width: 224px;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
 
-  // Only visible inside AnimatePresence on mobile
+  @include glass;
+  // Slightly more opaque than header pills for readability
+  background: rgba(8, 12, 20, 0.94);
+
+  [data-theme='light'] & {
+    background: rgba(255, 255, 255, 0.97);
+  }
+
   @include respond-above(lg) {
     display: none !important;
   }
 }
 
-.mobileNav {
-  @include container;
+.mobileMenuItems {
+  padding: 6px;
   display: flex;
   flex-direction: column;
   gap: 2px;
 }
 
-.mobileNavLink {
-  display: block;
+.mobileNavItem {
   width: 100%;
-  text-align: left;
-  padding: 11px 16px;
+  height: 44px;
+  padding: 0 18px;
+  display: flex;
+  align-items: center;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  white-space: nowrap;
   font-size: 0.9375rem;
   font-weight: 500;
-  color: var(--text-secondary);
-  border-radius: var(--radius-md);
+  color: rgba(255, 255, 255, 0.78);
+  will-change: transform;
   transition:
-    color var(--transition-fast),
-    background var(--transition-fast);
+    background 0.15s ease,
+    color 0.15s ease;
 
-  &:hover,
-  &.active {
-    color: var(--text-primary);
-    background: var(--accent-dim);
+  &:hover {
+    background: rgba(255, 255, 255, 0.07);
+    color: rgba(255, 255, 255, 0.96);
   }
 
-  &.active {
-    color: var(--text-accent);
+  [data-theme='light'] & {
+    color: var(--text-secondary);
+
+    &:hover {
+      background: rgba(67, 56, 202, 0.07);
+      color: var(--text-primary);
+    }
+  }
+}
+
+.mobileNavActive {
+  color: var(--text-accent) !important;
+  background: var(--accent-dim) !important;
+
+  [data-theme='light'] & {
+    color: var(--text-accent) !important;
+    background: var(--accent-dim) !important;
+  }
+}
+
+// ── Hamburger button open state ───────────────────────────────────────────────
+
+.mobileMenuBtnOpen {
+  background: rgba(99, 102, 241, 0.22) !important;
+  border-color: rgba(99, 102, 241, 0.32) !important;
+  color: var(--text-accent) !important;
+
+  [data-theme='light'] & {
+    background: var(--accent-dim) !important;
+    border-color: var(--border) !important;
+    color: var(--text-accent) !important;
   }
 }

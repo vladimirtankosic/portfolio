@@ -2,14 +2,14 @@
 @use '../../../styles/mixins' as *;
 
 // ─────────────────────────────────────────────────────────────────────────────
-// DESKTOP  (≥ 768px)  — vertical pill column, right-centre of viewport
-// MOBILE   (< 768px)  — glassmorphic horizontal pill bar, bottom-centre
+// DESKTOP (≥ 768px) — vertical floating glass pills, right-centre of viewport
+// MOBILE  (< 768px) — horizontal glassmorphic pill bar, bottom-centre
+//                     BackToTop button sits to the right at the same baseline
 // ─────────────────────────────────────────────────────────────────────────────
 
-// ── Wrapper: CSS positioning only, never animated ─────────────────────────────
+// ── Wrapper: CSS positioning only ─────────────────────────────────────────────
 
 .wrapper {
-  // Desktop default
   position: fixed;
   right: 24px;
   top: 50%;
@@ -17,150 +17,120 @@
   z-index: 100;
 
   @include respond-to(md) {
-    // Mobile: centre horizontally, pin above safe-area
     top: auto;
     right: auto;
     left: 50%;
-    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
     transform: translateX(-50%);
-    pointer-events: none; // wrapper passes clicks through; container re-enables them
+    // Bottom aligned so BackToTop can sit at the same visual baseline
+    bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+    pointer-events: none;
   }
 }
 
-// ── Container: the animated visual element ────────────────────────────────────
+// ── Container ─────────────────────────────────────────────────────────────────
 
 .container {
-  // Desktop: vertical stack of individual pills
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 10px;
+  gap: 8px;
+  will-change: transform;
 
   @include respond-to(md) {
-    // Mobile: single horizontal glassmorphic pill bar
     pointer-events: all;
     flex-direction: row;
     align-items: center;
-    gap: 0;
+    gap: 2px;
+    padding: 6px;
     width: max-content;
-    max-width: calc(100vw - 32px);
+    max-width: calc(100vw - 80px); // leave room for BackToTop on the right
 
-    background: rgba(12, 17, 27, 0.88);
-    backdrop-filter: blur(18px) saturate(1.5);
-    -webkit-backdrop-filter: blur(18px) saturate(1.5);
-    border: 1px solid rgba(255, 255, 255, 0.09);
     border-radius: 100px;
-    padding: 4px;
-    box-shadow:
-      0 8px 32px rgba(0, 0, 0, 0.35),
-      0 2px 8px rgba(0, 0, 0, 0.2),
-      inset 0 1px 0 rgba(255, 255, 255, 0.04);
-
-    [data-theme='light'] & {
-      background: rgba(255, 255, 255, 0.92);
-      border-color: rgba(15, 23, 42, 0.08);
-      box-shadow:
-        0 8px 32px rgba(15, 23, 42, 0.1),
-        0 2px 8px rgba(15, 23, 42, 0.06),
-        inset 0 1px 0 rgba(255, 255, 255, 1);
-    }
+    @include glass;
   }
 }
 
-// ── Individual button ─────────────────────────────────────────────────────────
+// ── Button ────────────────────────────────────────────────────────────────────
 
 .btn {
-  // Desktop: individual rounded-pill card
+  // Desktop: glass pill card
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 16px;
+  padding: 9px 16px;
   border-radius: 100px;
-  border: 1px solid var(--border-subtle);
-  background: var(--bg-card);
-  color: var(--text-secondary);
+  color: rgba(255, 255, 255, 0.72);
   font-size: 0.8125rem;
   font-weight: 500;
   white-space: nowrap;
   cursor: pointer;
   text-decoration: none;
-  box-shadow: var(--shadow-md);
-  transition:
-    background var(--transition-fast),
-    border-color var(--transition-fast),
-    color var(--transition-fast),
-    box-shadow var(--transition-fast),
-    transform var(--transition-fast);
+  will-change: transform;
+
+  @include glass;
+
+  transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease;
 
   &:hover {
-    background: var(--bg-card-hover);
-    border-color: var(--border);
-    color: var(--text-primary);
-    box-shadow: var(--shadow-lg);
-    transform: translateX(-3px);
+    color: rgba(255, 255, 255, 0.95);
+    background: rgba(18, 22, 36, 0.88);
+    border-color: rgba(255, 255, 255, 0.16);
+  }
+
+  [data-theme='light'] & {
+    color: var(--text-secondary);
+
+    &:hover {
+      color: var(--text-primary);
+      background: rgba(245, 247, 250, 0.96);
+    }
   }
 
   @include respond-to(md) {
-    // Mobile: transparent button inside the pill bar
-    padding: 8px 14px;
-    min-height: 44px;
-    border: none;
-    background: transparent;
-    box-shadow: none;
-    border-radius: 100px;
-    font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.75);
-    // Remove gap — spacing between icon and label is handled via label margin-left transition
+    // Mobile: circular icon button inside the shared glass pill
+    padding: 0;
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
+    justify-content: center;
+    border-radius: 50%;
+    color: rgba(255, 255, 255, 0.80);
     gap: 0;
-    transition:
-      background 0.2s ease,
-      box-shadow 0.2s ease,
-      color 0.2s ease;
+
+    // Reset glass — inherited from container pill
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: none;
+    box-shadow: none;
 
     &:hover {
-      background: rgba(255, 255, 255, 0.07);
+      background: rgba(255, 255, 255, 0.08);
       border: none;
       box-shadow: none;
-      transform: none;
-      color: rgba(255, 255, 255, 0.95);
+      color: rgba(255, 255, 255, 0.96);
     }
 
-    // Active: subtle highlight, no heavy fill — Wolt-style
-    &.active {
-      background: rgba(255, 255, 255, 0.05);
-      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1);
-      color: rgba(255, 255, 255, 0.95);
+    &:active {
+      background: rgba(255, 255, 255, 0.12);
     }
 
     [data-theme='light'] & {
       color: var(--text-secondary);
 
       &:hover {
-        background: rgba(67, 56, 202, 0.07);
+        background: rgba(67, 56, 202, 0.08);
         color: var(--text-primary);
       }
-    }
-
-    [data-theme='light'] &.active {
-      background: rgba(99, 102, 241, 0.06);
-      box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.18);
-      color: var(--text-primary);
-    }
-
-    // Reveal label when button is active
-    &.active .label {
-      max-width: 150px;
-      opacity: 1;
-      margin-left: 6px;
     }
   }
 }
 
-// Accent variant (Contact Me) — desktop
+// Accent: Contact button (desktop only)
 .btnPrimary {
-  background: var(--accent-dim);
-  border-color: var(--border);
   color: var(--text-accent);
+  border-color: var(--border);
+  background: var(--accent-dim);
 
   &:hover {
     background: var(--accent-dim);
@@ -169,44 +139,14 @@
     box-shadow: var(--shadow-accent);
   }
 
-  @include respond-to(md) {
-    // Mobile: accent-tinted text inside the pill
-    background: transparent;
-    border: none;
-    color: #818cf8;
-
+  [data-theme='light'] & {
     &:hover {
-      background: rgba(99, 102, 241, 0.14);
-      border: none;
-      box-shadow: none;
-      color: #a5b4fc;
-    }
-
-    // Active: stronger accent ring, still transparent background
-    &.active {
-      background: rgba(99, 102, 241, 0.08);
-      box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.28);
-      color: #a5b4fc;
-    }
-
-    [data-theme='light'] & {
-      color: var(--text-accent);
-
-      &:hover {
-        background: rgba(67, 56, 202, 0.08);
-        color: var(--accent);
-      }
-    }
-
-    [data-theme='light'] &.active {
-      background: rgba(99, 102, 241, 0.07);
-      box-shadow: 0 0 0 1px rgba(99, 102, 241, 0.22);
-      color: var(--accent);
+      background: var(--accent-dim);
     }
   }
 }
 
-// ── Icon wrapper ─────────────────────────────────────────────────────────────
+// ── Icon wrapper ──────────────────────────────────────────────────────────────
 
 .iconWrap {
   display: flex;
@@ -220,46 +160,73 @@
 
   @include respond-to(md) {
     svg {
-      width: 14px;
-      height: 14px;
+      width: 20px;
+      height: 20px;
     }
   }
 }
 
-// ── Label ─────────────────────────────────────────────────────────────────────
+// ── Label — desktop only ──────────────────────────────────────────────────────
 
 .label {
   font-weight: 500;
   letter-spacing: 0.01em;
 
   @include respond-to(md) {
-    // Hidden by default on mobile — revealed via .active on parent button
-    max-width: 0;
-    opacity: 0;
-    overflow: hidden;
-    white-space: nowrap;
-    margin-left: 0;
-    transition:
-      max-width 0.25s cubic-bezier(0.22, 1, 0.36, 1),
-      opacity 0.2s ease,
-      margin-left 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    display: none;
   }
 }
 
-// ── Divider — pill separator, mobile only ─────────────────────────────────────
+// ── Divider — desktop only ────────────────────────────────────────────────────
 
 .divider {
-  display: none;
+  display: block;
+  width: 1px;
+  height: 20px;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.10);
+
+  [data-theme='light'] & {
+    background: rgba(15, 23, 42, 0.10);
+  }
 
   @include respond-to(md) {
-    display: block;
-    width: 1px;
-    height: 22px;
-    flex-shrink: 0;
-    background: rgba(255, 255, 255, 0.1);
+    display: none;
+  }
+}
 
-    [data-theme='light'] & {
-      background: rgba(15, 23, 42, 0.1);
-    }
+// ── Clipboard toast ───────────────────────────────────────────────────────────
+
+.toast {
+  position: absolute;
+  white-space: nowrap;
+  padding: 6px 16px;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  pointer-events: none;
+  z-index: 110;
+
+  @include glass;
+  color: rgba(255, 255, 255, 0.92);
+
+  // Desktop: float to the left of the vertical stack
+  right: calc(100% + 12px);
+  top: 0;
+
+  [data-theme='light'] & {
+    color: var(--text-primary);
+  }
+
+  // Mobile: float above the pill bar
+  @include respond-to(md) {
+    right: auto;
+    top: auto;
+    bottom: calc(100% + 14px);
+    left: 50%;
+    transform: translateX(-50%);
+
+    background: rgba(10, 13, 22, 0.92);
+    color: rgba(255, 255, 255, 0.92);
   }
 }

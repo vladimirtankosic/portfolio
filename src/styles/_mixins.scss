@@ -115,3 +115,25 @@
 
 @mixin focus-ring {
 }
+
+// ── Unified glassmorphism surface ─────────────────────────────────────────────
+// Use for ALL floating elements: header pills, nav, sticky actions, back-to-top
+// Keeps blur / opacity / border in sync across the entire design system
+
+@mixin glass {
+  background: rgba(10, 13, 22, 0.80);
+  backdrop-filter: blur(20px) saturate(1.5);
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  border: 0.5px solid rgba(255, 255, 255, 0.11);
+  box-shadow:
+    0 4px 18px rgba(0, 0, 0, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+  [data-theme='light'] & {
+    background: rgba(255, 255, 255, 0.86);
+    border-color: rgba(15, 23, 42, 0.09);
+    box-shadow:
+      0 4px 18px rgba(15, 23, 42, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.92);
+  }
+}

@@ -10,3 +10,5 @@ screenshot
 
 - da bude code editor programerska tema sa blagim fokusom na gaming/casino industriju
 - content
+- floating sticky action buttons (instagram like) 
+- floating sticky header action buttons (instagram like)

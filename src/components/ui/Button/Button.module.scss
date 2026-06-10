@@ -9,7 +9,7 @@
   font-size: 0.9375rem;
   font-weight: 600;
   letter-spacing: -0.01em;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-pill);
   cursor: pointer;
   border: none;
   outline: none;
@@ -28,7 +28,7 @@
   }
 
   &:active {
-    transform: scale(0.97);
+    transform: scale(0.96);
   }
 }
 
@@ -40,7 +40,7 @@
   &:hover {
     background: var(--accent-hover);
     box-shadow: var(--shadow-accent);
-    transform: translateY(-1px);
+    transform: translateY(-2px);
   }
 }
 
@@ -53,7 +53,7 @@
     border-color: var(--border);
     background: var(--accent-dim);
     color: var(--text-accent);
-    transform: translateY(-1px);
+    transform: translateY(-2px);
   }
 }
 
@@ -80,5 +80,5 @@
 
 .iconOnly {
   padding: 10px;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-full);
 }

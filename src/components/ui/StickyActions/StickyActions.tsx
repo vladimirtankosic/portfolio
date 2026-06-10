@@ -1,12 +1,43 @@
 'use client';
 
-import { useState, useCallback, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useCallback, useEffect } from 'react';
+import {
+  motion,
+  AnimatePresence,
+  useMotionValue,
+  useVelocity,
+  useSpring,
+  useTransform,
+} from 'framer-motion';
 import { useI18n } from '@/providers/I18nProvider';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import styles from './StickyActions.module.scss';
 
-type ActionId = 'cv' | 'contact';
+// ── Spring configs ──────────────────────────────────────────────────────────
+const SPRING_TAP = { type: 'spring' as const, stiffness: 580, damping: 28 };
+const SPRING_HOVER = { type: 'spring' as const, stiffness: 360, damping: 24 };
+const SPRING_ENTER = { type: 'spring' as const, stiffness: 340, damping: 28 };
+
+// ── Icons ───────────────────────────────────────────────────────────────────
+
+function ShareIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
+      <polyline points="16 6 12 2 8 6" />
+      <line x1="12" y1="2" x2="12" y2="15" />
+    </svg>
+  );
+}
 
 function DownloadIcon() {
   return (
@@ -45,23 +76,25 @@ function MailIcon() {
   );
 }
 
+// ── Component ────────────────────────────────────────────────────────────────
+
 export function StickyActions() {
   const { t } = useI18n();
   const isMobile = useMediaQuery('(max-width: 767px)');
-  const [activeId, setActiveId] = useState<ActionId | null>(null);
-  const wrapperRef = useRef<HTMLDivElement>(null);
+  const [shareToast, setShareToast] = useState(false);
 
-  // Dismiss on outside tap — listener only active while a button is expanded
+  // Subtle scroll-velocity float — mobile only
+  const scrollY = useMotionValue(0);
+  const velocity = useVelocity(scrollY);
+  const rawFloat = useTransform(velocity, [-900, 0, 900], [4, 0, -4]);
+  const floatY = useSpring(rawFloat, { stiffness: 70, damping: 18 });
+
   useEffect(() => {
-    if (!activeId) return;
-    const dismiss = (e: PointerEvent) => {
-      if (wrapperRef.current && !wrapperRef.current.contains(e.target as Node)) {
-        setActiveId(null);
-      }
-    };
-    document.addEventListener('pointerdown', dismiss);
-    return () => document.removeEventListener('pointerdown', dismiss);
-  }, [activeId]);
+    if (!isMobile) return;
+    const onScroll = () => scrollY.set(window.scrollY);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [isMobile, scrollY]);
 
   const scrollToContact = useCallback(() => {
     const el = document.getElementById('contact');
@@ -74,77 +107,98 @@ export function StickyActions() {
     window.scrollTo({ top, behavior: 'smooth' });
   }, []);
 
-  // Tap: execute action immediately + expand label. Re-tap collapses label (no duplicate action).
-  const handleCvClick = useCallback(
-    (e: React.MouseEvent<HTMLAnchorElement>) => {
-      if (!isMobile) return;
-      if (activeId === 'cv') {
-        e.preventDefault(); // already downloaded — just close
-        setActiveId(null);
+  const handleShare = useCallback(async () => {
+    try {
+      if (typeof navigator !== 'undefined' && navigator.share) {
+        await navigator.share({
+          title: 'Vladimir Tankosic — Frontend Developer',
+          url: window.location.href,
+        });
       } else {
-        setActiveId('cv'); // download proceeds via native anchor; label expands
+        await navigator.clipboard.writeText(window.location.href);
+        setShareToast(true);
+        setTimeout(() => setShareToast(false), 2200);
       }
-    },
-    [isMobile, activeId],
-  );
-
-  const handleContactClick = useCallback(() => {
-    if (!isMobile) {
-      scrollToContact();
-      return;
+    } catch {
+      // User dismissed
     }
-    if (activeId === 'contact') {
-      setActiveId(null); // already scrolled — just close
-    } else {
-      setActiveId('contact'); // scroll happens + label expands
-      scrollToContact();
-    }
-  }, [isMobile, activeId, scrollToContact]);
-
-  const cvActive = activeId === 'cv';
-  const contactActive = activeId === 'contact';
+  }, []);
 
   return (
-    // Wrapper: CSS positioning only — never animated, keeps transform stable
-    <div ref={wrapperRef} className={styles.wrapper} aria-label="Quick actions">
+    <div className={styles.wrapper} aria-label="Quick actions">
       <motion.div
         className={styles.container}
-        initial={{ opacity: 0, y: 12 }}
+        style={isMobile ? { y: floatY } : undefined}
+        initial={{ opacity: 0, y: 18 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.45, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ ...SPRING_ENTER, delay: 1.0 }}
       >
+        {/* ─── Share ─── */}
+        <motion.button
+          className={styles.btn}
+          onClick={handleShare}
+          aria-label="Share portfolio"
+          whileHover={!isMobile ? { y: -2, transition: SPRING_HOVER } : undefined}
+          whileTap={{ scale: isMobile ? 0.88 : 0.96, y: 0, transition: SPRING_TAP }}
+        >
+          <span className={styles.iconWrap}>
+            <ShareIcon />
+          </span>
+          {!isMobile && <span className={styles.label}>Share</span>}
+        </motion.button>
+
+        {/* ─── Divider: desktop only ─── */}
+        {!isMobile && <span className={styles.divider} aria-hidden="true" />}
+
+        {/* ─── Download CV ─── */}
         <motion.a
           href="/cv/VladimirTankosic-CV.pdf"
           download
-          className={`${styles.btn}${cvActive ? ` ${styles.active}` : ''}`}
+          className={styles.btn}
           aria-label={t('stickyActions.downloadCv')}
-          aria-expanded={isMobile ? cvActive : undefined}
-          onClick={handleCvClick}
-          whileHover={{ scale: 0.97 }}
-          whileTap={{ scale: 0.94 }}
+          whileHover={!isMobile ? { y: -2, transition: SPRING_HOVER } : undefined}
+          whileTap={{ scale: isMobile ? 0.88 : 0.96, y: 0, transition: SPRING_TAP }}
         >
           <span className={styles.iconWrap}>
             <DownloadIcon />
           </span>
-          <span className={styles.label}>{t('stickyActions.downloadCv')}</span>
+          {!isMobile && <span className={styles.label}>{t('stickyActions.downloadCv')}</span>}
         </motion.a>
 
-        <span className={styles.divider} aria-hidden="true" />
+        {/* ─── Divider: desktop only ─── */}
+        {!isMobile && <span className={styles.divider} aria-hidden="true" />}
 
+        {/* ─── Contact ─── */}
         <motion.button
-          onClick={handleContactClick}
-          className={`${styles.btn} ${styles.btnPrimary}${contactActive ? ` ${styles.active}` : ''}`}
+          onClick={scrollToContact}
+          className={`${styles.btn}${!isMobile ? ` ${styles.btnPrimary}` : ''}`}
           aria-label={t('stickyActions.contactMe')}
-          aria-expanded={isMobile ? contactActive : undefined}
-          whileHover={{ scale: 0.97 }}
-          whileTap={{ scale: 0.94 }}
+          whileHover={!isMobile ? { y: -2, transition: SPRING_HOVER } : undefined}
+          whileTap={{ scale: isMobile ? 0.88 : 0.96, y: 0, transition: SPRING_TAP }}
         >
           <span className={styles.iconWrap}>
             <MailIcon />
           </span>
-          <span className={styles.label}>{t('stickyActions.contactMe')}</span>
+          {!isMobile && <span className={styles.label}>{t('stickyActions.contactMe')}</span>}
         </motion.button>
       </motion.div>
+
+      {/* ─── Clipboard toast ─── */}
+      <AnimatePresence>
+        {shareToast && (
+          <motion.div
+            className={styles.toast}
+            role="status"
+            aria-live="polite"
+            initial={{ opacity: 0, y: 8, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 8, scale: 0.9 }}
+            transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          >
+            Link copied!
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
