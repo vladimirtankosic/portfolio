@@ -2,83 +2,136 @@ import type { Project } from '@/types';
 
 export const projects: Project[] = [
   {
-    id: 'casino-lobby-clone',
-    title: 'Casino Lobby Clone',
+    id: 'sentzuu-portfolio',
+    title: 'Sentzuu — Personal Portfolio Website',
+    liveUrl: 'https://sentzuu.com/',
     description:
-      'A casino lobby application featuring game listing, category filtering, search functionality and pagination. Built with Next.js and integrated with a REST API for dynamic game data.',
-    technologies: ['Next.js', 'React', 'Sass', 'REST API'],
-    githubUrl: 'https://github.com/vladimirtankosic',
+      'A cinematic portfolio website for a UI/UX designer focused on immersive storytelling and smooth transitions. Includes a full-screen overlay menu, video covers, parallax effects, and animated page transitions with structured case studies and media galleries.',
+    technologies: ['HTML', 'CSS', 'JavaScript', 'GSAP', 'jQuery', 'Isotope', 'PHP'],
     screenshots: [
-      '/projects/casino-lobby/1.webp',
-      '/projects/casino-lobby/2.webp',
-      '/projects/casino-lobby/3.webp',
-    ],
-    featured: true,
-  },
-  {
-    id: 'banking-platform',
-    title: 'Banking Platform',
-    description:
-      'Modern banking application with authentication, account management, transaction history and real-time balance updates. Features a clean dashboard with data visualizations.',
-    technologies: ['React', 'TypeScript', 'SCSS', 'PHP'],
-    githubUrl: 'https://github.com/vladimirtankosic',
-    screenshots: [
-      '/projects/banking/1.webp',
-      '/projects/banking/2.webp',
-      '/projects/banking/3.webp',
-    ],
-    featured: true,
-  },
-  {
-    id: 'ecommerce-platform',
-    title: 'E-Commerce Platform',
-    description:
-      'Full-featured online store with product catalog, cart management, checkout flow and order tracking. Optimized for performance with server-side rendering and image optimization.',
-    technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'REST API'],
-    githubUrl: 'https://github.com/vladimirtankosic',
-    screenshots: [
-      '/projects/ecommerce/1.webp',
-      '/projects/ecommerce/2.webp',
-      '/projects/ecommerce/3.webp',
-    ],
-    featured: true,
-  },
-  {
-    id: 'admin-dashboard',
-    title: 'Admin Dashboard',
-    description:
-      'Comprehensive admin panel with analytics, user management, role-based access control and real-time data tables. Built with a focus on performance and developer experience.',
-    technologies: ['React', 'TypeScript', 'SCSS', 'Node.js'],
-    githubUrl: 'https://github.com/vladimirtankosic',
-    screenshots: [
-      '/projects/admin-dashboard/1.webp',
-      '/projects/admin-dashboard/2.webp',
+      '/projects/sentzuu-portfolio/1.webp',
+      '/projects/sentzuu-portfolio/2.webp',
+      '/projects/sentzuu-portfolio/3.webp',
     ],
   },
   {
-    id: 'booking-app',
-    title: 'Booking Application',
+    id: 'my-account',
+    title: 'My Account',
     description:
-      'Reservation platform for scheduling appointments and managing availability. Features calendar integration, email notifications and a responsive mobile-first interface.',
-    technologies: ['React', 'SCSS', 'PHP', 'MySQL'],
-    githubUrl: 'https://github.com/vladimirtankosic',
+      'Comprehensive player profile and account management dashboard featuring personal information editing, real-time balance visibility, and full transaction history. Includes a custom profile picture system with in-browser image cropping, predefined avatar selection, and progressive field locking to protect verified identity data.',
+    technologies: ['PHP', 'JavaScript', 'SCSS', 'Redis', 'RTG API'],
     screenshots: [
-      '/projects/booking/1.webp',
-      '/projects/booking/2.webp',
+      '/projects/my-account/1.webp',
+      '/projects/my-account/2.webp',
+      '/projects/my-account/3.webp',
     ],
   },
   {
-    id: 'portfolio-website',
-    title: 'Portfolio Website',
+    id: 'onboarding-missions',
+    title: 'Onboarding Missions',
     description:
-      'Personal portfolio showcasing projects and professional experience. Built with Next.js and animated with Framer Motion, featuring dark/light themes and multi-language support.',
-    technologies: ['Next.js', 'TypeScript', 'Sass', 'Framer Motion'],
-    githubUrl: 'https://github.com/vladimirtankosic',
-    liveUrl: 'https://vladimirtankosic.com',
+      'Interactive 24-hour guided onboarding experience that walks new players through key casino actions — from email verification to placing their first bet — culminating in a $70 Free Chip reward. Features a spotlight overlay system that highlights relevant UI elements in context, smart page routing, real-time progress polling, and analytics integration.',
+    technologies: ['PHP', 'JavaScript', 'SCSS', 'Google Tag Manager', 'Customer.io'],
     screenshots: [
-      '/projects/portfolio/1.webp',
-      '/projects/portfolio/2.webp',
+      '/projects/onboarding-missions/1.webp',
+      '/projects/onboarding-missions/2.webp',
+      '/projects/onboarding-missions/3.webp',
     ],
-    featured: true,
+  },
+  {
+    id: 'navigation-profile-picture',
+    title: 'Navigation & Profile Picture System',
+    description:
+      'Responsive dual-mode navigation with a persistent desktop sidebar and a fixed mobile top bar, both driven by server-cached menu data and a unified profile avatar service. Includes an animated hamburger menu with blur overlay, collapsible submenu groups, and a profile settings popup.',
+    technologies: ['PHP', 'JavaScript', 'SCSS', 'Redis', 'GSAP'],
+    screenshots: [
+      '/projects/navigation-profile-picture/1.webp',
+      '/projects/navigation-profile-picture/2.webp',
+      '/projects/navigation-profile-picture/3.webp',
+    ],
+  },
+  {
+    id: 'casino-banking',
+    title: 'Banking',
+    description:
+      'Full-featured financial platform supporting 15+ deposit methods including cryptocurrency, credit cards, e-wallets, and local bank transfers, alongside a guided withdrawal flow with multi-step eligibility verification. Includes Quick Deposit functionality, bonus upsell messaging, QR-code crypto address generation, and coupon redemption support.',
+    technologies: ['PHP', 'JavaScript', 'SCSS', 'RTG API'],
+    screenshots: [
+      '/projects/casino-banking/1.webp',
+      '/projects/casino-banking/2.webp',
+      '/projects/casino-banking/3.webp',
+    ],
+  },
+  {
+    id: 'vip-program',
+    title: 'VIP Program',
+    description:
+      'Five-tier loyalty program delivering scaled cashback rates, withdrawal limits, comp point multipliers, and exclusive player benefits as users progress from Rookie to Hall of Fame. Features VIP Trial mode, countdown timers, and progress tracking.',
+    technologies: ['PHP', 'JavaScript', 'SCSS', 'Redis', 'RTG API', 'Smartico'],
+    screenshots: [
+      '/projects/vip-program/1.webp',
+      '/projects/vip-program/2.webp',
+      '/projects/vip-program/3.webp',
+    ],
+  },
+  {
+    id: 'games-page',
+    title: 'Games Page',
+    description:
+      'Dynamic game lobby featuring 500+ casino games across multiple categories with real-time search, Favorites and Recently Played functionality, and progressive lazy-loading. Includes instant favorite toggling and RTG-powered game launching.',
+    technologies: ['PHP', 'JavaScript', 'SCSS', 'Redis', 'RTG API'],
+    screenshots: [
+      '/projects/games-page/1.webp',
+      '/projects/games-page/2.webp',
+      '/projects/games-page/3.webp',
+    ],
+  },
+  {
+    id: 'refer-a-friend',
+    title: 'Refer a Friend Program',
+    description:
+      'Player referral system with unique shareable codes, social sharing integrations, and a self-service dashboard showing referrals, earned rewards, and cashback progression. Includes Free Spins rewards and referral network incentives.',
+    technologies: ['PHP', 'JavaScript', 'SCSS', 'RTG API'],
+    screenshots: [
+      '/projects/refer-a-friend/1.webp',
+      '/projects/refer-a-friend/2.webp',
+      '/projects/refer-a-friend/3.webp',
+    ],
+  },
+  {
+    id: 'tournament-pages',
+    title: 'Tournament Pages',
+    description:
+      'Promotional tournament platform supporting leaderboard competitions, cup-style brackets, and affiliate-specific campaigns with configurable prize structures and eligibility rules.',
+    technologies: ['PHP', 'JavaScript', 'SCSS'],
+    screenshots: [
+      '/projects/tournament-pages/1.webp',
+      '/projects/tournament-pages/2.webp',
+      '/projects/tournament-pages/3.webp',
+    ],
+  },
+  {
+    id: 'promotions-bonus-system',
+    title: 'Promotions & Bonus System',
+    description:
+      'Centralized promotions platform managing bonus offers, free chip campaigns, and time-limited deals across multiple casino brands. Supports coupon validation, redemption tracking, and personalized targeting.',
+    technologies: ['PHP', 'JavaScript', 'SCSS', 'RTG API'],
+    screenshots: [
+      '/projects/promotions-bonus-system/1.webp',
+      '/projects/promotions-bonus-system/2.webp',
+      '/projects/promotions-bonus-system/3.webp',
+    ],
+  },
+  {
+    id: 'admin-cms',
+    title: 'Admin CMS',
+    description:
+      'Internal content management system for administering games, banners, promotions, player data, and media assets. Includes a media library, bulk operations, email log management, and extensible plugin architecture.',
+    technologies: ['PHP', 'JavaScript', 'CKEditor'],
+    screenshots: [
+      '/projects/admin-cms/1.webp',
+      '/projects/admin-cms/2.webp',
+      '/projects/admin-cms/3.webp',
+    ],
   },
 ];

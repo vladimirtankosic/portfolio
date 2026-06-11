@@ -107,16 +107,35 @@
 }
 
 // ── Focus — clean, accessible, no browser defaults ────────────────────────
-//
-// Remove the default browser focus ring for mouse/touch interactions.
-// Keep a clean custom outline for keyboard navigation (focus-visible).
-//
-:focus {
-  outline: none;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+// Tap/click highlight must live on the element — it fires before :focus
+// is set, so placing it on :focus has zero effect. Set it globally here.
+* {
+  -webkit-tap-highlight-color: transparent;
 }
 
+// Remove the browser outline for all focus events (baseline).
+:focus {
+  outline: none;
+}
+
+// Explicitly suppress for non-keyboard focus. Catches browsers / older
+// Chrome versions that incorrectly apply :focus-visible on mouse click.
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+// Keyboard (Tab) navigation: show a clean accent outline.
 :focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+// Form inputs manage their own keyboard focus styling (border + glow).
+// Suppress the global outline so they don't render a double indicator.
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
   outline: none;
 }
 

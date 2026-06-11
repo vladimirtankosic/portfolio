@@ -152,7 +152,7 @@ export function StickyActions() {
 
         {/* ─── Download CV ─── */}
         <motion.a
-          href="/cv/VladimirTankosic-CV.pdf"
+          href="/cv/VladimirTankosicCV.pdf"
           download
           className={styles.btn}
           aria-label={t('stickyActions.downloadCv')}

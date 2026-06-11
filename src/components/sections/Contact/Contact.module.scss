@@ -217,8 +217,7 @@
     transform var(--transition-fast),
     box-shadow var(--transition-fast);
 
-  &:focus,
-  &:focus-visible {
+  &:focus {
     outline: none;
   }
 

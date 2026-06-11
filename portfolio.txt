@@ -1,14 +1,2 @@
-PROJECTS
-
-naziv
-opis
-tehnologije
-screenshot
--------------------------------
-- proci kroz casino projects i dodati naziv, opis, tehnologije, screenshot
-- dodati sentzuu.com
-
-- da bude code editor programerska tema sa blagim fokusom na gaming/casino industriju
+- screenshots
 - content
-- floating sticky action buttons (instagram like) 
-- floating sticky header action buttons (instagram like)

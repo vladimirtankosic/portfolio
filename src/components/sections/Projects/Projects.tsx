@@ -12,6 +12,25 @@ import { useI18n } from '@/providers/I18nProvider';
 import type { Project } from '@/types';
 import styles from './Projects.module.scss';
 
+function ExternalLinkIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+      <polyline points="15 3 21 3 21 9" />
+      <line x1="10" y1="14" x2="21" y2="3" />
+    </svg>
+  );
+}
+
 function MonitorIcon() {
   return (
     <svg
@@ -73,7 +92,6 @@ function ProjectCard({ project, onOpen }: ProjectCardProps) {
         <div className={styles.imageOverlay} aria-hidden="true" />
       </div>
 
-      {/* Content — not interactive */}
       <div className={styles.content}>
         <h3 className={styles.title}>{project.title}</h3>
         <p className={styles.description}>{project.description}</p>
@@ -84,6 +102,20 @@ function ProjectCard({ project, onOpen }: ProjectCardProps) {
             </span>
           ))}
         </div>
+        {project.liveUrl && (
+          <div className={styles.cardActions}>
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.liveLink}
+              aria-label={`Visit live site for ${project.title}`}
+            >
+              <ExternalLinkIcon />
+              <span>See Project</span>
+            </a>
+          </div>
+        )}
       </div>
     </article>
   );

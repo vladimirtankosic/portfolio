@@ -76,7 +76,7 @@
   padding: 0 14px;
   font-size: 0.875rem;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.78);
   border-radius: 100px;
   display: flex;
   align-items: center;
@@ -88,8 +88,8 @@
     background 0.15s ease;
 
   &:hover {
-    color: rgba(255, 255, 255, 0.9);
-    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.96);
+    background: rgba(255, 255, 255, 0.07);
   }
 
   [data-theme='light'] & {
@@ -97,19 +97,14 @@
 
     &:hover {
       color: var(--text-primary);
-      background: var(--accent-dim);
+      background: rgba(67, 56, 202, 0.07);
     }
   }
 }
 
 .active {
-  color: rgba(255, 255, 255, 0.95) !important;
-  background: rgba(255, 255, 255, 0.1) !important;
-
-  [data-theme='light'] & {
-    color: var(--text-accent) !important;
-    background: var(--accent-dim) !important;
-  }
+  color: var(--text-accent) !important;
+  background: var(--accent-dim) !important;
 }
 
 // ── Right controls group ──────────────────────────────────────────────────────

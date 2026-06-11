@@ -43,7 +43,13 @@ export function Hero() {
           </motion.p>
 
           <motion.div className={styles.ctas} {...fadeUp(0.5)}>
-            <Button as="a" href="/cv/VladimirTankosic-CV.pdf" variant="primary" size="lg" download>
+            <Button
+              as="a"
+              href="/cv/VladimirTankosicCV.pdf"
+              variant="primary"
+              size="lg"
+              download
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="18"

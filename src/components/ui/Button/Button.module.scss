@@ -22,8 +22,7 @@
     color var(--transition-fast);
   white-space: nowrap;
 
-  &:focus,
-  &:focus-visible {
+  &:focus {
     outline: none;
   }
 

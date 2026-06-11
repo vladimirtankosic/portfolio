@@ -9,7 +9,7 @@ const schema = z.object({
 });
 
 const resend = new Resend('re_xxxxxxxxx');
-const TO_EMAIL = 'tankosicvladimir93@gmail.com';
+const TO_EMAIL = 'vladimirtankosic.dev@gmail.com';
 
 export async function POST(req: NextRequest) {
   try {
