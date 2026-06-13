@@ -10,8 +10,18 @@ import { Contact } from '@/components/sections/Contact/Contact';
 import { ScrollProgress } from '@/components/ui/ScrollProgress/ScrollProgress';
 import { BackToTop } from '@/components/ui/BackToTop/BackToTop';
 import { StickyActions } from '@/components/ui/StickyActions/StickyActions';
+import { projects as projectsData } from '@/data/projects';
+import { getProjectImageMap } from '@/lib/getProjectImages';
+import type { Project } from '@/types';
 
 export default function Home() {
+  const imageMap = getProjectImageMap();
+  const projects: Project[] = projectsData.map((p) => ({
+    ...p,
+    thumbnail: imageMap[p.id]?.thumbnail,
+    screenshots: imageMap[p.id]?.screenshots ?? [],
+  }));
+
   return (
     <>
       <ScrollProgress />
@@ -21,7 +31,7 @@ export default function Home() {
         <About />
         <Skills />
         <Experience />
-        <Projects />
+        <Projects projects={projects} />
         <TechnicalHighlights />
         <Contact />
       </main>

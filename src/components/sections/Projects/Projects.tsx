@@ -7,7 +7,6 @@ import { Navigation, Pagination, Autoplay, A11y } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
 import { AnimatedSection } from '@/components/ui/AnimatedSection/AnimatedSection';
 import { ProjectModal } from '@/components/ui/ProjectModal/ProjectModal';
-import { projects } from '@/data/projects';
 import { useI18n } from '@/providers/I18nProvider';
 import type { Project } from '@/types';
 import styles from './Projects.module.scss';
@@ -57,11 +56,10 @@ interface ProjectCardProps {
 }
 
 function ProjectCard({ project, onOpen }: ProjectCardProps) {
-  const thumb = project.screenshots?.[0] ?? project.image;
+  const thumb = project.thumbnail ?? project.screenshots?.[0] ?? project.image;
 
   return (
     <article className={styles.card}>
-      {/* Thumbnail — only this area triggers the modal */}
       <div
         className={styles.imageWrapper}
         onClick={() => onOpen(project)}
@@ -121,7 +119,11 @@ function ProjectCard({ project, onOpen }: ProjectCardProps) {
   );
 }
 
-export function Projects() {
+interface ProjectsProps {
+  projects: Project[];
+}
+
+export function Projects({ projects }: ProjectsProps) {
   const { t } = useI18n();
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const swiperRef = useRef<SwiperType | null>(null);

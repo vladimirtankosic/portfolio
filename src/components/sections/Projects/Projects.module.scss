@@ -59,7 +59,7 @@
 
   :global(.swiper-button-next),
   :global(.swiper-button-prev) {
-    top: 38%; // vertically centred in the 16:9 thumbnail area
+    top: 27%; // vertically centred in the 2:1 thumbnail area
     width: 40px;
     height: 40px;
     background: var(--bg-card);
@@ -199,7 +199,7 @@
 .imageWrapper {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: #{$aspect-thumbnail};
   overflow: hidden;
   background: var(--bg-primary);
   cursor: pointer;
@@ -209,7 +209,7 @@
 }
 
 .image {
-  object-fit: cover;
+  object-fit: contain;
 
   @media (hover: hover) and (pointer: fine) {
     transition: transform var(--transition-slow);

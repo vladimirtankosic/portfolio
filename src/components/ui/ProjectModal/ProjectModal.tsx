@@ -1,11 +1,12 @@
 'use client';
 
-import { useEffect, useRef, useSyncExternalStore } from 'react';
+import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Keyboard, Mousewheel, A11y } from 'swiper/modules';
+import { Keyboard, Mousewheel, A11y } from 'swiper/modules';
+import type { Swiper as SwiperType } from 'swiper';
 import type { Project } from '@/types';
 import styles from './ProjectModal.module.scss';
 
@@ -78,6 +79,13 @@ export function ProjectModal({ project, initialSlide = 0, onClose }: ProjectModa
   const mounted = useSyncExternalStore(subscribe, () => true, () => false);
   const modalRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
+  const [activeIndex, setActiveIndex] = useState(initialSlide);
+
+  // Reset slide when a different project opens
+  useEffect(() => {
+    setActiveIndex(initialSlide);
+  }, [project?.id, initialSlide]);
 
   useEffect(() => {
     if (!project) return;
@@ -116,13 +124,22 @@ export function ProjectModal({ project, initialSlide = 0, onClose }: ProjectModa
       }
     };
 
+    const suppressEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') e.stopImmediatePropagation();
+    };
+
     document.addEventListener('keydown', handleTab);
-    return () => document.removeEventListener('keydown', handleTab);
+    document.addEventListener('keydown', suppressEsc, true);
+    return () => {
+      document.removeEventListener('keydown', handleTab);
+      document.removeEventListener('keydown', suppressEsc, true);
+    };
   }, [project]);
 
   if (!mounted) return null;
 
   const screenshots = project?.screenshots ?? (project?.image ? [project.image] : []);
+  const hasMultiple = screenshots.length > 1;
 
   return createPortal(
     <AnimatePresence>
@@ -146,28 +163,32 @@ export function ProjectModal({ project, initialSlide = 0, onClose }: ProjectModa
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             onClick={(e) => e.stopPropagation()}
           >
-            <button
-              ref={closeButtonRef}
-              className={styles.closeButton}
-              onClick={onClose}
-              aria-label="Close gallery"
-            >
-              <CloseIcon />
-            </button>
+            {/* Close button in dedicated header — never overlaps image */}
+            <div className={styles.modalHeader}>
+              <button
+                ref={closeButtonRef}
+                className={styles.closeButton}
+                onClick={onClose}
+                aria-label="Close gallery"
+              >
+                <CloseIcon />
+              </button>
+            </div>
 
             <div className={styles.swiperWrapper}>
               {screenshots.length > 0 ? (
                 <Swiper
-                  modules={[Pagination, Keyboard, Mousewheel, A11y]}
-                  pagination={{ clickable: true }}
+                  modules={[Keyboard, Mousewheel, A11y]}
                   keyboard={{ enabled: true }}
                   mousewheel={{ enabled: true, forceToAxis: true, releaseOnEdges: true }}
                   grabCursor
                   spaceBetween={0}
                   slidesPerView={1}
                   initialSlide={initialSlide}
-                  loop={screenshots.length > 1}
+                  loop={hasMultiple}
                   a11y={{ enabled: true }}
+                  onSwiper={setSwiperInstance}
+                  onSlideChange={(s) => setActiveIndex(s.realIndex)}
                   className={styles.swiper}
                 >
                   {screenshots.map((src, i) => (
@@ -178,7 +199,7 @@ export function ProjectModal({ project, initialSlide = 0, onClose }: ProjectModa
                           alt={`${project.title} screenshot ${i + 1}`}
                           fill
                           className={styles.image}
-                          sizes="(max-width: 640px) 100vw, 760px"
+                          sizes="(max-width: 480px) 100vw, 440px"
                           priority={i === 0}
                         />
                       </div>
@@ -192,6 +213,22 @@ export function ProjectModal({ project, initialSlide = 0, onClose }: ProjectModa
                 </div>
               )}
             </div>
+
+            {/* Pagination dots below image — always in document flow, never overlaps */}
+            {hasMultiple && (
+              <div className={styles.paginationDots} role="tablist" aria-label="Screenshots">
+                {screenshots.map((_, i) => (
+                  <button
+                    key={i}
+                    role="tab"
+                    aria-selected={i === activeIndex}
+                    aria-label={`Screenshot ${i + 1}`}
+                    className={`${styles.paginationDot}${i === activeIndex ? ` ${styles.paginationDotActive}` : ''}`}
+                    onClick={() => swiperInstance?.slideToLoop(i)}
+                  />
+                ))}
+              </div>
+            )}
 
             {project.liveUrl && (
               <div className={styles.modalFooter}>
