@@ -127,8 +127,8 @@ export function Contact() {
                   </div>
                   <div>
                     <p className={styles.contactLabel}>{t('contact.emailLabel')}</p>
-                    <a href="mailto:vladimirtankosic.dev@gmail.com" className={styles.contactValue}>
-                      vladimirtankosic.dev@gmail.com
+                    <a href="mailto:tankosicvladimir93@gmail.com" className={styles.contactValue}>
+                      tankosicvladimir93@gmail.com
                     </a>
                   </div>
                 </div>
