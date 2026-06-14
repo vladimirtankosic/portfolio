@@ -132,6 +132,7 @@
   },
   "footer": { "rights": "All rights reserved.", "linkedinAriaLabel": "LinkedIn profile" },
   "stickyActions": {
+    "share": "Share",
     "downloadCv": "Download CV",
     "contactMe": "Contact Me"
   }

@@ -10,6 +10,13 @@ export const projects: Project[] = [
     technologies: ['HTML', 'CSS', 'JavaScript', 'GSAP', 'jQuery', 'Isotope', 'PHP'],
   },
   {
+    id: 'crypto-casino',
+    title: 'Crypto Casino Platform',
+    description:
+      'Full-stack online casino platform with React SPA frontend and PHP backend, featuring payments, crypto support, bonuses, loyalty system, admin CMS, and full player management.',
+    technologies: ['React 18 + TypeScript', 'SCSS', 'PHP', 'RTG API'],
+  },
+  {
     id: 'my-account',
     title: 'My Account',
     description:
@@ -78,12 +85,5 @@ export const projects: Project[] = [
     description:
       'Internal CMS for managing games, banners, promotions, media assets, users, and administrative operations.',
     technologies: ['PHP', 'JavaScript', 'CKEditor'],
-  },
-  {
-    id: 'crypto-casino',
-    title: 'Crypto Casino',
-    description:
-      'Full casino platform with crypto support, wallet integration, KYC flow, bonuses, and complete player journey.',
-    technologies: ['PHP', 'JavaScript', 'SCSS', 'Redis', 'RTG API'],
   },
 ];

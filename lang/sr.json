@@ -132,6 +132,7 @@
   },
   "footer": { "rights": "Sva prava zadržana.", "linkedinAriaLabel": "LinkedIn profil" },
   "stickyActions": {
+    "share": "Podeli",
     "downloadCv": "Preuzmi CV",
     "contactMe": "Kontaktiraj me"
   }

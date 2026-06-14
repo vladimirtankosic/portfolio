@@ -10,7 +10,7 @@ import styles from './Contact.module.scss';
 
 const schema = z.object({
   name: z.string().min(2, 'nameMin').max(80, 'nameMax'),
-  email: z.string().email('emailInvalid'),
+  email: z.email('emailInvalid'),
   message: z.string().min(10, 'messageMin').max(2000, 'messageMax'),
 });
 

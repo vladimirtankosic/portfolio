@@ -147,7 +147,7 @@ export function StickyActions() {
           <span className={styles.iconWrap}>
             <ShareIcon />
           </span>
-          {!isMobile && <span className={styles.label}>Share</span>}
+          {!isMobile && <span className={styles.label}>{t('stickyActions.share')}</span>}
         </motion.button>
 
         {/* ─── Divider: desktop only ─── */}

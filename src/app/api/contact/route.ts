@@ -4,14 +4,19 @@ import { Resend } from 'resend';
 
 const schema = z.object({
   name: z.string().min(2).max(80),
-  email: z.string().email(),
+  email: z.email(),
   message: z.string().min(10).max(2000),
 });
 
-const resend = new Resend('re_xxxxxxxxx');
-const TO_EMAIL = 'vladimirtankosic.dev@gmail.com';
-
 export async function POST(req: NextRequest) {
+  const apiKey = process.env.RESEND_API_KEY;
+  const toEmail = process.env.MY_EMAIL;
+
+  if (!apiKey || !toEmail) {
+    console.error('Missing RESEND_API_KEY or MY_EMAIL env variable');
+    return NextResponse.json({ message: 'Server configuration error.' }, { status: 500 });
+  }
+
   try {
     const body = await req.json();
     const parsed = schema.safeParse(body);
@@ -22,9 +27,11 @@ export async function POST(req: NextRequest) {
 
     const { name, email, message } = parsed.data;
 
+    const resend = new Resend(apiKey);
+
     const { error } = await resend.emails.send({
       from: 'Portfolio Contact <onboarding@resend.dev>',
-      to: [TO_EMAIL],
+      to: [toEmail],
       replyTo: email,
       subject: `New portfolio message from ${name}`,
       html: `
