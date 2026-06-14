@@ -10,8 +10,8 @@
     "badge": "Available for new opportunities",
     "greeting": "Hi, I'm",
     "name": "Vladimir",
-    "subheadline": "Frontend Developer with {years}+ years of professional experience building modern web applications.",
-    "description": "Specialized in React, Next.js and modern JavaScript technologies. Currently building high-performance web apps for the online gaming industry.",
+    "subheadline": "Frontend Developer with {years}+ years building modern web apps.",
+    "description": "React and Next.js developer focused on performance and clean UI. Currently working in the online gaming industry.",
     "downloadCv": "Download CV",
     "contactMe": "Contact Me",
     "connect": "Connect",
@@ -25,23 +25,23 @@
     "statsCompany": "Company",
     "statsTechnologies": "Technologies",
     "statsBugs": "Bugs Fixed",
-    "bio1": "I'm a [[Frontend Developer]] with professional experience since December 2021, currently working at [[Gemini Infotech]] where I develop and maintain web applications for the online gaming industry.",
-    "bio2": "My day-to-day involves building [[reusable UI component libraries]], integrating REST APIs, and continuously optimizing application performance. I care deeply about writing clean, maintainable code and delivering seamless, responsive user experiences.",
-    "bio3": "I collaborate closely with backend developers and QA teams, participate in code reviews, and take ownership of frontend architecture decisions. I thrive in environments that value craftsmanship and technical excellence.",
+    "bio1": "Frontend Developer with experience since 2021, currently at Gemini Infotech building web apps for the gaming industry.",
+    "bio2": "Focused on reusable UI, REST APIs, performance optimization, and responsive interfaces.",
+    "bio3": "I work closely with teams to build scalable and maintainable frontend systems.",
     "interestsTitle": "Areas of Interest",
     "interests": [
       "Frontend Architecture",
       "Performance Optimization",
-      "Modern React Ecosystem",
+      "React Ecosystem",
       "User Experience",
-      "Scalable Applications",
+      "Scalable Systems",
       "Design Systems"
     ]
   },
   "skills": {
     "tag": "Technical Skills",
     "title": "Technologies I work with",
-    "subtitle": "A curated set of tools and technologies I use daily to build modern, performant web applications.",
+    "subtitle": "Tools and technologies I use to build modern web applications.",
     "categoryFrontend": "Frontend",
     "categoryState": "State Management",
     "categoryBackend": "Backend",
@@ -50,20 +50,20 @@
   "experience": {
     "tag": "Experience",
     "title": "Professional journey",
-    "subtitle": "My professional experience building production web applications.",
+    "subtitle": "Experience building production web applications.",
     "keyResponsibilities": "Key Responsibilities",
     "items": [
       {
-        "description": "Developing and maintaining web applications for the online gaming industry, working within agile teams to deliver performant, scalable frontend solutions.",
+        "description": "Developing web applications for the online gaming industry with focus on performance and scalability.",
         "period": "December 2021 – Present",
         "responsibilities": [
-          "Development and maintenance of React applications",
-          "Integration of REST APIs",
-          "Implementation of new features and UI components",
-          "Performance optimization and code splitting",
-          "Responsive UI development across all device sizes",
-          "Collaboration with backend developers and QA teams",
-          "Code reviews and bug fixing"
+          "React development and maintenance",
+          "REST API integration",
+          "UI component implementation",
+          "Performance optimization",
+          "Responsive design",
+          "Team collaboration",
+          "Bug fixing and code reviews"
         ]
       }
     ]
@@ -76,14 +76,14 @@
     "items": [
       {
         "title": "Casino Lobby Clone",
-        "description": "A casino lobby application featuring game listing, category filtering, search functionality and pagination. Built with Next.js and integrated with a REST API for dynamic game data."
+        "description": "Game lobby with filtering, search, pagination and API integration."
       }
     ]
   },
   "highlights": {
-    "tag": "Technical Strengths",
+    "tag": "Technical Highlights",
     "title": "What I bring to the table",
-    "subtitle": "Core technical capabilities that drive quality in every project I work on.",
+    "subtitle": "Core technical capabilities that define how I work.",
     "items": [
       {
         "title": "Performance Optimization",
@@ -130,10 +130,7 @@
       "messageMax": "Message is too long"
     }
   },
-  "footer": {
-    "rights": "All rights reserved.",
-    "linkedinAriaLabel": "LinkedIn profile"
-  },
+  "footer": { "rights": "All rights reserved.", "linkedinAriaLabel": "LinkedIn profile" },
   "stickyActions": {
     "downloadCv": "Download CV",
     "contactMe": "Contact Me"

@@ -7,11 +7,11 @@
     "contact": "Kontakt"
   },
   "hero": {
-    "badge": "Dostupan za nove prilike",
+    "badge": "Otvoren za nove prilike",
     "greeting": "Zdravo, ja sam",
     "name": "Vladimir",
-    "subheadline": "Frontend Developer sa {years}+ godina profesionalnog iskustva u razvoju modernih web aplikacija.",
-    "description": "Specijalizovan za React, Next.js i moderne JavaScript tehnologije. Trenutno razvijam visoko-performantne web aplikacije za industriju online igara.",
+    "subheadline": "Frontend Developer sa {years}+ godina iskustva u izradi modernih web aplikacija.",
+    "description": "React i Next.js developer fokusiran na performanse i čist UI. Trenutno radim u industriji online igara.",
     "downloadCv": "Preuzmi CV",
     "contactMe": "Kontaktiraj me",
     "connect": "Poveži se",
@@ -21,85 +21,85 @@
     "tag": "O meni",
     "titleLine1": "Kreiranje digitalnih iskustava",
     "titleLine2": "sa preciznošću",
-    "statsYears": "God. Iskustva",
+    "statsYears": "God. iskustva",
     "statsCompany": "Kompanija",
     "statsTechnologies": "Tehnologije",
-    "statsBugs": "Ispravl. Grešaka",
-    "bio1": "Ja sam [[Frontend Developer]] sa profesionalnim iskustvom od decembra 2021, trenutno zaposlen u [[Gemini Infotech]] gde razvijam i održavam web aplikacije za industriju online igara.",
-    "bio2": "Moj svakodnevni rad obuhvata izgradnju [[biblioteka višekratno upotrebljivih UI komponenti]], integraciju REST API-ja i kontinuiranu optimizaciju performansi aplikacija. Veoma mi je stalo do pisanja čistog, održivog koda i isporuke besprekorne, responzivne korisničke iskustvo.",
-    "bio3": "Blisko sarađujem sa backend developerima i QA timovima, učestvujem u pregledima koda i preuzimam odgovornost za odluke o frontend arhitekturi. Napreduje u okruženjima koja cene zanatstvo i tehničku izvrsnost.",
+    "statsBugs": "Ispravljeni bagovi",
+    "bio1": "Frontend Developer sa iskustvom od 2021. godine, trenutno zaposlen u Gemini Infotech gde radim na web aplikacijama za gaming industriju.",
+    "bio2": "Fokus na UI komponente, REST API integraciju, optimizaciju performansi i responzivan dizajn.",
+    "bio3": "Radim u timu na razvoju skalabilnih i održivih frontend sistema.",
     "interestsTitle": "Oblasti interesovanja",
     "interests": [
-      "Frontend Arhitektura",
-      "Optimizacija Performansi",
-      "Moderni React Ekosistem",
-      "Korisničko Iskustvo",
-      "Skalabilne Aplikacije",
-      "Dizajn Sistemi"
+      "Frontend arhitektura",
+      "Optimizacija performansi",
+      "React ekosistem",
+      "Korisničko iskustvo",
+      "Skalabilni sistemi",
+      "Dizajn sistemi"
     ]
   },
   "skills": {
-    "tag": "Tehničke Veštine",
-    "title": "Tehnologije sa kojima radim",
-    "subtitle": "Skup alata i tehnologija koje svakodnevno koristim za razvoj modernih, performantnih web aplikacija.",
+    "tag": "Tehničke veštine",
+    "title": "Tehnologije koje koristim",
+    "subtitle": "Alati i tehnologije koje koristim za izradu modernih web aplikacija.",
     "categoryFrontend": "Frontend",
-    "categoryState": "Upravljanje Stanjem",
+    "categoryState": "Upravljanje stanjem",
     "categoryBackend": "Backend",
     "categoryTools": "Alati"
   },
   "experience": {
     "tag": "Iskustvo",
     "title": "Profesionalni put",
-    "subtitle": "Moje profesionalno iskustvo u razvoju produkcijskih web aplikacija.",
-    "keyResponsibilities": "Ključne Odgovornosti",
+    "subtitle": "Iskustvo u razvoju produkcijskih web aplikacija.",
+    "keyResponsibilities": "Ključne odgovornosti",
     "items": [
       {
-        "description": "Razvoj i održavanje web aplikacija za industriju online igara, rad unutar agilnih timova radi isporuke performantnih i skalabilnih frontend rešenja.",
-        "period": "Decembar 2021 – Danas",
+        "description": "Razvoj web aplikacija za gaming industriju sa fokusom na performanse i skalabilnost.",
+        "period": "Decembar 2021 – danas",
         "responsibilities": [
-          "Razvoj i održavanje React aplikacija",
+          "Razvoj React aplikacija",
           "Integracija REST API-ja",
-          "Implementacija novih funkcionalnosti i UI komponenti",
-          "Optimizacija performansi i code splitting",
-          "Responzivni UI razvoj za sve veličine uređaja",
-          "Saradnja sa backend developerima i QA timovima",
-          "Code review i ispravka grešaka"
+          "Izrada UI komponenti",
+          "Optimizacija performansi",
+          "Responzivan dizajn",
+          "Timska saradnja",
+          "Ispravke bagova i code review"
         ]
       }
     ]
   },
   "projects": {
     "tag": "Projekti",
-    "title": "Odabrani radovi",
-    "subtitle": "Izbor projekata koje sam izgradio.",
+    "title": "Izabrani radovi",
+    "subtitle": "Nekoliko projekata koje sam radio.",
     "viewScreenshots": "Pogledaj slike",
     "items": [
       {
         "title": "Casino Lobby Klon",
-        "description": "Aplikacija casino lobbija sa listingom igara, filtriranjem po kategorijama, funkcijom pretrage i paginacijom. Izgrađena sa Next.js i integrisana sa REST API-jem za dinamičke podatke o igrama."
+        "description": "Lobby za igre sa filtriranjem, pretragom, paginacijom i API integracijom."
       }
     ]
   },
   "highlights": {
-    "tag": "Tehničke Prednosti",
-    "title": "Šta donosim na sto",
-    "subtitle": "Ključne tehničke sposobnosti koje pokreću kvalitet u svakom projektu na kome radim.",
+    "tag": "Tehnički aspekti",
+    "title": "Šta donosim",
+    "subtitle": "Ključne tehničke sposobnosti koje definišu način na koji radim.",
     "items": [
       {
-        "title": "Optimizacija Performansi",
-        "description": "Isporuka brzih i efikasnih aplikacija kroz moderne tehnike web performansi."
+        "title": "Optimizacija performansi",
+        "description": "Brze i efikasne aplikacije uz moderne tehnike web performansi."
       },
       {
-        "title": "Integracija API-ja",
-        "description": "Besprekorna integracija sa REST API-jevima korišćenjem modernih obrazaca za dohvatanje podataka."
+        "title": "API integracija",
+        "description": "Besprekorna integracija sa REST API-jevima koristeći moderne obrasce za dohvatanje podataka."
       },
       {
-        "title": "Responzivni Dizajn",
-        "description": "Kreiranje pixel-savršenih interfejsa koji besprekorno rade na svim veličinama ekrana."
+        "title": "Responzivan dizajn",
+        "description": "Precizni interfejsi koji besprekorno rade na svim veličinama ekrana."
       },
       {
-        "title": "SEO i Metapodaci",
-        "description": "Maksimiziranje vidljivosti uz ugrađene Next.js metadata API-je i najbolje prakse."
+        "title": "SEO i metapodaci",
+        "description": "Maksimalna vidljivost uz Next.js metadata API-je i najbolje prakse."
       }
     ]
   },
@@ -130,10 +130,7 @@
       "messageMax": "Poruka je predugačka"
     }
   },
-  "footer": {
-    "rights": "Sva prava zadržana.",
-    "linkedinAriaLabel": "LinkedIn profil"
-  },
+  "footer": { "rights": "Sva prava zadržana.", "linkedinAriaLabel": "LinkedIn profil" },
   "stickyActions": {
     "downloadCv": "Preuzmi CV",
     "contactMe": "Kontaktiraj me"

@@ -10,7 +10,7 @@
 
 .btn {
   position: fixed;
-  bottom: 32px;
+  bottom: 123px;
   right: 32px;
   z-index: 90;
 
@@ -24,7 +24,10 @@
   @include flex-center;
   @include glass;
 
-  transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+  transition:
+    color 0.15s ease,
+    background 0.15s ease,
+    border-color 0.15s ease;
 
   [data-theme='light'] & {
     color: var(--text-secondary);

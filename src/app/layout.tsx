@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+import Script from 'next/script';
 import { ThemeProvider } from '@/providers/ThemeProvider';
 import { I18nProvider } from '@/providers/I18nProvider';
 import 'swiper/css';
@@ -68,14 +69,8 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" data-theme="dark" suppressHydrationWarning>
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();`,
-          }}
-        />
-      </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <Script src="/theme-init.js" strategy="beforeInteractive" />
         <I18nProvider>
           <ThemeProvider>{children}</ThemeProvider>
         </I18nProvider>
