@@ -184,6 +184,11 @@
     &:hover .imageOverlay {
       opacity: 1;
     }
+
+    &:hover .galleryBadge {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   @media (hover: none) and (pointer: coarse) {
@@ -247,6 +252,55 @@
   @media (hover: hover) and (pointer: fine) {
     transition: opacity var(--transition-base);
   }
+}
+
+// ── Gallery indicator badge ───────────────────────────────────────────────────
+
+.galleryBadge {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px 5px 8px;
+  border-radius: 100px;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: rgba(255, 255, 255, 0.9);
+  pointer-events: none;
+  z-index: 2;
+
+  @include glass;
+
+  svg {
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
+  }
+
+  [data-theme='light'] & {
+    color: var(--text-primary);
+  }
+
+  // Desktop: hidden until card hover
+  @media (hover: hover) and (pointer: fine) {
+    opacity: 0;
+    transform: translateY(6px);
+    transition:
+      opacity var(--transition-base),
+      transform var(--transition-base);
+  }
+
+  // Mobile: always visible with icon + text
+  @media (hover: none) and (pointer: coarse) {
+    opacity: 1;
+  }
+}
+
+.galleryBadgeText {
+  white-space: nowrap;
 }
 
 // ── Card content (non-interactive) ────────────────────────────────────────────
