@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
     const resend = new Resend(apiKey);
 
     const { error } = await resend.emails.send({
-      from: 'onboarding@resend.dev',
+      from: 'Contact form <info@vladimirtankosic.com>',
       to: [toEmail],
       replyTo: email,
       subject: `New portfolio message from ${name}`,
