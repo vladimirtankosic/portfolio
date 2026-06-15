@@ -1,7 +1,10 @@
 'use client';
 
 import { type ReactNode } from 'react';
+import Image from 'next/image';
+import { LuCode, LuZap, LuAtom, LuUser, LuDatabase, LuLayers } from 'react-icons/lu';
 import { AnimatedSection } from '@/components/ui/AnimatedSection/AnimatedSection';
+import { SectionHeader } from '@/components/ui/SectionHeader/SectionHeader';
 import { getYearsOfExperience } from '@/hooks/useYearsOfExperience';
 import { useI18n } from '@/providers/I18nProvider';
 import styles from './About.module.scss';
@@ -19,6 +22,16 @@ function parseHighlights(text: string, className: string): ReactNode[] {
   );
 }
 
+// Index-keyed icons — order matches lang.about.interests array
+const INTEREST_ICONS = [
+  LuCode, // Frontend Architecture
+  LuZap, // Performance Optimization
+  LuAtom, // React Ecosystem
+  LuUser, // User Experience
+  LuDatabase, // Scalable Systems
+  LuLayers, // Design Systems
+] as const;
+
 export function About() {
   const years = getYearsOfExperience();
   const { t, lang } = useI18n();
@@ -26,38 +39,25 @@ export function About() {
   return (
     <section id="about" className={styles.section} aria-labelledby="about-title">
       <div className={styles.inner}>
-        <AnimatedSection className={styles.header}>
-          <p className="section-tag">{t('about.tag')}</p>
-          <h2 className="section-title" id="about-title">
-            {t('about.titleLine1')}
-            <br />
-            {t('about.titleLine2')}
-          </h2>
-        </AnimatedSection>
+        <SectionHeader
+          id="about-title"
+          title={<>{t('about.titleLine1')}</>}
+          className={styles.header}
+        />
 
         <div className={styles.grid}>
           <AnimatedSection delay={0.1} direction="right">
             <div className={styles.left}>
               <div className={styles.imageWrapper}>
-                <div className={styles.imagePlaceholder}>
-                  <div className={styles.avatarIcon}>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      aria-hidden="true"
-                    >
-                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                      <circle cx="12" cy="7" r="4" />
-                    </svg>
-                  </div>
-                  <span className={styles.imageName}>Vladimir Tankosic</span>
-                  <span className={styles.imageRole}>Frontend Developer</span>
-                </div>
+                <Image
+                  src="/vt.jpg"
+                  alt="Vladimir Tankosic – Frontend Developer"
+                  fill
+                  className={styles.image}
+                  sizes="(max-width: 1024px) 280px, 360px"
+                  priority
+                />
+                <div className={styles.imageOverlay} aria-hidden="true" />
               </div>
 
               <div className={styles.stats}>
@@ -91,11 +91,17 @@ export function About() {
 
               <p className={styles.interestsTitle}>{t('about.interestsTitle')}</p>
               <div className={styles.interests}>
-                {lang.about.interests.map((interest) => (
-                  <span key={interest} className={styles.interestTag}>
-                    {interest}
-                  </span>
-                ))}
+                {lang.about.interests.map((interest, index) => {
+                  const Icon = INTEREST_ICONS[index];
+                  return (
+                    <span key={interest} className={styles.interestTag}>
+                      <span className={styles.interestIcon} aria-hidden="true">
+                        {Icon && <Icon />}
+                      </span>
+                      {interest}
+                    </span>
+                  );
+                })}
               </div>
             </div>
           </AnimatedSection>

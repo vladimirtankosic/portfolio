@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay, A11y } from 'swiper/modules';
 import type { Swiper as SwiperType } from 'swiper';
 import { AnimatedSection } from '@/components/ui/AnimatedSection/AnimatedSection';
+import { SectionHeader } from '@/components/ui/SectionHeader/SectionHeader';
 import { ProjectModal } from '@/components/ui/ProjectModal/ProjectModal';
 import { useI18n } from '@/providers/I18nProvider';
 import type { Project } from '@/types';
@@ -162,13 +163,12 @@ export function Projects({ projects }: ProjectsProps) {
     <>
       <section id="projects" className={styles.section} aria-labelledby="projects-title">
         <div className={styles.inner}>
-          <AnimatedSection className={styles.header}>
-            <p className="section-tag">{t('projects.tag')}</p>
-            <h2 className="section-title" id="projects-title">
-              {t('projects.title')}
-            </h2>
-            <p className="section-subtitle">{t('projects.subtitle')}</p>
-          </AnimatedSection>
+          <SectionHeader
+            id="projects-title"
+            title={t('projects.title')}
+            subtitle={t('projects.subtitle')}
+            className={styles.header}
+          />
 
           <AnimatedSection delay={0.1}>
             <div className={styles.swiperWrapper}>
@@ -182,7 +182,7 @@ export function Projects({ projects }: ProjectsProps) {
                 navigation
                 pagination={{ clickable: true }}
                 autoplay={{
-                  delay: 4000,
+                  delay: 7000,
                   disableOnInteraction: false,
                   pauseOnMouseEnter: true,
                 }}

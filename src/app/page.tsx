@@ -5,7 +5,6 @@ import { About } from '@/components/sections/About/About';
 import { Skills } from '@/components/sections/Skills/Skills';
 import { Experience } from '@/components/sections/Experience/Experience';
 import { Projects } from '@/components/sections/Projects/Projects';
-import { TechnicalHighlights } from '@/components/sections/TechnicalHighlights/TechnicalHighlights';
 import { Contact } from '@/components/sections/Contact/Contact';
 import { ScrollProgress } from '@/components/ui/ScrollProgress/ScrollProgress';
 import { BackToTop } from '@/components/ui/BackToTop/BackToTop';
@@ -32,7 +31,6 @@ export default function Home() {
         <Skills />
         <Experience />
         <Projects projects={projects} />
-        <TechnicalHighlights />
         <Contact />
       </main>
       <Footer />

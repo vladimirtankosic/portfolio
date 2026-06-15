@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { AnimatedSection } from '@/components/ui/AnimatedSection/AnimatedSection';
+import { SectionHeader } from '@/components/ui/SectionHeader/SectionHeader';
 import { useI18n } from '@/providers/I18nProvider';
 import styles from './Contact.module.scss';
 
@@ -95,21 +96,22 @@ export function Contact() {
   return (
     <section id="contact" className={styles.section} aria-labelledby="contact-title">
       <div className={styles.inner}>
-        <AnimatedSection className={styles.header}>
-          <p className="section-tag">{t('contact.tag')}</p>
-          <h2 className="section-title" id="contact-title">
-            {t('contact.title')}
-          </h2>
-          <p className="section-subtitle">{t('contact.subtitle')}</p>
-        </AnimatedSection>
+        <SectionHeader
+          id="contact-title"
+          title={t('contact.title')}
+          subtitle={t('contact.subtitle')}
+          className={styles.header}
+        />
 
         <div className={styles.grid}>
           <AnimatedSection delay={0.1} direction="right">
             <div className={styles.info}>
-              <p className={styles.infoText}>{t('contact.infoText')}</p>
-
               <div className={styles.contactItems}>
-                <div className={styles.contactItem}>
+                <a
+                  href="mailto:tankosicvladimir93@gmail.com"
+                  className={styles.contactIconLink}
+                  aria-label="Send email to tankosicvladimir93@gmail.com"
+                >
                   <div className={styles.contactIcon}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -125,15 +127,16 @@ export function Contact() {
                       <polyline points="22,6 12,13 2,6" />
                     </svg>
                   </div>
-                  <div>
-                    <p className={styles.contactLabel}>{t('contact.emailLabel')}</p>
-                    <a href="mailto:tankosicvladimir93@gmail.com" className={styles.contactValue}>
-                      tankosicvladimir93@gmail.com
-                    </a>
-                  </div>
-                </div>
+                  <span className={styles.contactIconLabel}>{t('contact.emailLabel')}</span>
+                </a>
 
-                <div className={styles.contactItem}>
+                <a
+                  href="https://www.linkedin.com/in/vladimir-tankosic1993"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.contactIconLink}
+                  aria-label="Visit LinkedIn profile"
+                >
                   <div className={styles.contactIcon}>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -146,18 +149,8 @@ export function Contact() {
                       <circle cx="4" cy="4" r="2" />
                     </svg>
                   </div>
-                  <div>
-                    <p className={styles.contactLabel}>{t('contact.linkedinLabel')}</p>
-                    <a
-                      href="https://www.linkedin.com/in/vladimir-tankosic1993"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.contactValue}
-                    >
-                      linkedin.com/in/vladimir-tankosic1993
-                    </a>
-                  </div>
-                </div>
+                  <span className={styles.contactIconLabel}>{t('contact.linkedinLabel')}</span>
+                </a>
               </div>
             </div>
           </AnimatedSection>

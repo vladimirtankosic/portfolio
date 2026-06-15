@@ -3,7 +3,6 @@
 
 .section {
   @include section-padding;
-  background: var(--bg-secondary);
   position: relative;
 
   &::before {
@@ -37,64 +36,66 @@
   }
 }
 
-// Left info column
-.info {
-}
-
-.infoText {
-  font-size: 1rem;
-  color: var(--text-secondary);
-  line-height: 1.75;
-  margin-bottom: 40px;
-}
-
 .contactItems {
   display: flex;
-  flex-direction: column;
-  gap: 16px;
+  flex-direction: row;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
-.contactItem {
+.contactIconLink {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 10px;
+  text-decoration: none;
+  outline: none;
+
+  &:hover,
+  &:focus-visible {
+    .contactIcon {
+      background: var(--accent-dim);
+      border-color: var(--accent);
+      color: var(--text-accent);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-accent);
+    }
+
+    .contactIconLabel {
+      color: var(--text-accent);
+    }
+  }
 }
 
 .contactIcon {
-  width: 44px;
-  height: 44px;
-  border-radius: var(--radius-md);
-  background: var(--accent-dim);
-  border: 1px solid var(--border);
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
   @include flex-center;
   flex-shrink: 0;
-  color: var(--accent);
+  color: var(--text-secondary);
+  transition:
+    background var(--transition-base),
+    border-color var(--transition-base),
+    color var(--transition-base),
+    transform var(--transition-base),
+    box-shadow var(--transition-base);
 
   svg {
-    width: 20px;
-    height: 20px;
+    width: 26px;
+    height: 26px;
   }
 }
 
-.contactLabel {
-  font-size: 0.75rem;
+.contactIconLabel {
+  font-size: 0.6875rem;
+  font-weight: 600;
   color: var(--text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin-bottom: 2px;
-}
-
-.contactValue {
-  font-size: 0.9375rem;
-  font-weight: 500;
-  color: var(--text-primary);
+  letter-spacing: 0.07em;
   transition: color var(--transition-fast);
-
-  &:hover {
-    color: var(--text-accent);
-  }
-
-  @include focus-ring;
 }
 
 // Form

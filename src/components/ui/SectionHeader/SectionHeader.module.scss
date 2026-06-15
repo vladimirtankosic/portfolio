@@ -1,0 +1,18 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+// The ::before accent line is the visual replacement for the old section-tag badge.
+// It sits above the h2, creates a clear section separator, and inherits the accent
+// colour from the design token so both themes are handled automatically.
+.header {
+  &::before {
+    content: '';
+    display: none;
+    width: 36px;
+    height: 2px;
+    background: var(--accent);
+    border-radius: 2px;
+    box-shadow: 0 0 8px var(--accent-glow);
+    margin-bottom: 20px;
+  }
+}

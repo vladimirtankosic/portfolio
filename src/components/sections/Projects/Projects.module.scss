@@ -3,7 +3,6 @@
 
 .section {
   @include section-padding;
-  background: var(--bg-secondary);
   position: relative;
 
   &::before {
@@ -348,7 +347,6 @@
   color: var(--text-muted);
   font-family: $font-mono;
 }
-
 // ── Live site link — card footer ──────────────────────────────────────────────
 
 .cardActions {

@@ -7,7 +7,6 @@
     "contact": "Kontakt"
   },
   "hero": {
-    "badge": "Otvoren za nove prilike",
     "greeting": "Zdravo, ja sam",
     "name": "Vladimir",
     "subheadline": "Frontend Developer sa {years}+ godina iskustva u izradi modernih web aplikacija.",
@@ -18,9 +17,7 @@
     "linkedinAriaLabel": "Poseti moj LinkedIn profil"
   },
   "about": {
-    "tag": "O meni",
-    "titleLine1": "Kreiranje digitalnih iskustava",
-    "titleLine2": "sa preciznošću",
+    "titleLine1": "O meni",
     "statsYears": "God. iskustva",
     "statsCompany": "Kompanija",
     "statsTechnologies": "Tehnologije",
@@ -28,7 +25,7 @@
     "bio1": "Frontend Developer sa iskustvom od 2021. godine, trenutno zaposlen u Gemini Infotech gde radim na web aplikacijama za gaming industriju.",
     "bio2": "Fokus na UI komponente, REST API integraciju, optimizaciju performansi i responzivan dizajn.",
     "bio3": "Radim u timu na razvoju skalabilnih i održivih frontend sistema.",
-    "interestsTitle": "Oblasti interesovanja",
+    "interestsTitle": "Interesovanja",
     "interests": [
       "Frontend arhitektura",
       "Optimizacija performansi",
@@ -39,18 +36,16 @@
     ]
   },
   "skills": {
-    "tag": "Tehničke veštine",
-    "title": "Tehnologije koje koristim",
-    "subtitle": "Alati i tehnologije koje koristim za izradu modernih web aplikacija.",
+    "title": "Tehničke veštine",
+    "subtitle": "Alati i tehnologije koje koristim.",
     "categoryFrontend": "Frontend",
-    "categoryState": "Upravljanje stanjem",
+    "categoryState": "State Management",
     "categoryBackend": "Backend",
     "categoryTools": "Alati"
   },
   "experience": {
-    "tag": "Iskustvo",
     "title": "Profesionalni put",
-    "subtitle": "Iskustvo u razvoju produkcijskih web aplikacija.",
+    "subtitle": "Iskustvo u razvoju web aplikacija.",
     "keyResponsibilities": "Ključne odgovornosti",
     "items": [
       {
@@ -69,64 +64,32 @@
     ]
   },
   "projects": {
-    "tag": "Projekti",
     "title": "Izabrani radovi",
     "subtitle": "Nekoliko projekata koje sam radio.",
-    "viewScreenshots": "Pogledaj slike",
-    "items": [
-      {
-        "title": "Casino Lobby Klon",
-        "description": "Lobby za igre sa filtriranjem, pretragom, paginacijom i API integracijom."
-      }
-    ]
-  },
-  "highlights": {
-    "tag": "Tehnički aspekti",
-    "title": "Šta donosim",
-    "subtitle": "Ključne tehničke sposobnosti koje definišu način na koji radim.",
-    "items": [
-      {
-        "title": "Optimizacija performansi",
-        "description": "Brze i efikasne aplikacije uz moderne tehnike web performansi."
-      },
-      {
-        "title": "API integracija",
-        "description": "Besprekorna integracija sa REST API-jevima koristeći moderne obrasce za dohvatanje podataka."
-      },
-      {
-        "title": "Responzivan dizajn",
-        "description": "Precizni interfejsi koji besprekorno rade na svim veličinama ekrana."
-      },
-      {
-        "title": "SEO i metapodaci",
-        "description": "Maksimalna vidljivost uz Next.js metadata API-je i najbolje prakse."
-      }
-    ]
+    "viewScreenshots": "Pogledaj slike"
   },
   "contact": {
-    "tag": "Stupite u Kontakt",
     "title": "Hajde da radimo zajedno",
-    "subtitle": "Imate projekat na umu ili želite da razgovarate o prilikama? Rado bih čuo od vas.",
-    "infoText": "Uvek sam otvoren za razgovor o novim projektima, kreativnim idejama ili prilikama da budem deo vaše vizije. Slobodno se obratite putem formulara ili direktno putem e-pošte.",
-    "emailLabel": "E-pošta",
+    "subtitle": "Otvoren sam za nove projekte, ideje i saradnje. Javi se putem forme ili emaila.",
+    "emailLabel": "Email",
     "linkedinLabel": "LinkedIn",
-    "formTitle": "Pošaljite poruku",
+    "formTitle": "Pošalji poruku",
     "nameLabel": "Ime",
-    "namePlaceholder": "Vaše ime",
-    "emailInputLabel": "E-pošta",
-    "emailPlaceholder": "vas@email.com",
+    "namePlaceholder": "Tvoje ime",
+    "emailInputLabel": "Email",
+    "emailPlaceholder": "tvoj@email.com",
     "messageLabel": "Poruka",
-    "messagePlaceholder": "Recite mi o vašem projektu ili prilici...",
+    "messagePlaceholder": "Opiši svoj projekat...",
     "sendButton": "Pošalji poruku",
-    "sending": "Slanje...",
-    "successMessage": "Poruka je poslata! Odgovorić vam što pre moguće.",
-    "errorMessage": "Nešto je pošlo po zlu. Molimo pokušajte ponovo.",
-    "networkError": "Slanje poruke nije uspelo. Proverite vezu i pokušajte ponovo.",
+    "sending": "Šaljem...",
+    "successMessage": "Poruka poslata! Javiću se uskoro.",
+    "errorMessage": "Došlo je do greške. Pokušaj ponovo.",
+    "networkError": "Proveri internet konekciju i pokušaj ponovo.",
     "validation": {
-      "nameMin": "Ime mora imati najmanje 2 karaktera",
+      "nameMin": "Minimum 2 karaktera",
       "nameMax": "Ime je predugačko",
-      "emailInvalid": "Unesite važeću e-mail adresu",
-      "messageMin": "Poruka mora imati najmanje 10 karaktera",
+      "emailInvalid": "Neispravan email",
+      "messageMin": "Minimum 10 karaktera",
       "messageMax": "Poruka je predugačka"
     }
   },

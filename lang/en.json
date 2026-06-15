@@ -7,7 +7,6 @@
     "contact": "Contact"
   },
   "hero": {
-    "badge": "Available for new opportunities",
     "greeting": "Hi, I'm",
     "name": "Vladimir",
     "subheadline": "Frontend Developer with {years}+ years building modern web apps.",
@@ -18,9 +17,7 @@
     "linkedinAriaLabel": "Visit my LinkedIn profile"
   },
   "about": {
-    "tag": "About Me",
-    "titleLine1": "Crafting digital experiences",
-    "titleLine2": "with precision",
+    "titleLine1": "About Me",
     "statsYears": "Years Exp.",
     "statsCompany": "Company",
     "statsTechnologies": "Technologies",
@@ -39,18 +36,16 @@
     ]
   },
   "skills": {
-    "tag": "Technical Skills",
-    "title": "Technologies I work with",
-    "subtitle": "Tools and technologies I use to build modern web applications.",
+    "title": "Technical Skills",
+    "subtitle": "Tools and technologies I work with.",
     "categoryFrontend": "Frontend",
     "categoryState": "State Management",
     "categoryBackend": "Backend",
     "categoryTools": "Tools"
   },
   "experience": {
-    "tag": "Experience",
     "title": "Professional journey",
-    "subtitle": "Experience building production web applications.",
+    "subtitle": "Experience building web applications.",
     "keyResponsibilities": "Key Responsibilities",
     "items": [
       {
@@ -69,45 +64,13 @@
     ]
   },
   "projects": {
-    "tag": "Projects",
     "title": "Selected work",
     "subtitle": "A selection of projects I've built.",
-    "viewScreenshots": "View Screenshots",
-    "items": [
-      {
-        "title": "Casino Lobby Clone",
-        "description": "Game lobby with filtering, search, pagination and API integration."
-      }
-    ]
-  },
-  "highlights": {
-    "tag": "Technical Highlights",
-    "title": "What I bring to the table",
-    "subtitle": "Core technical capabilities that define how I work.",
-    "items": [
-      {
-        "title": "Performance Optimization",
-        "description": "Delivering fast, efficient applications through modern web performance techniques."
-      },
-      {
-        "title": "API Integration",
-        "description": "Seamless integration with REST APIs using modern data-fetching patterns."
-      },
-      {
-        "title": "Responsive Design",
-        "description": "Crafting pixel-perfect interfaces that work flawlessly across all screen sizes."
-      },
-      {
-        "title": "SEO & Metadata",
-        "description": "Maximizing discoverability with built-in Next.js metadata APIs and best practices."
-      }
-    ]
+    "viewScreenshots": "View Screenshots"
   },
   "contact": {
-    "tag": "Get In Touch",
     "title": "Let's work together",
-    "subtitle": "Have a project in mind or want to discuss opportunities? I'd love to hear from you.",
-    "infoText": "I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision. Feel free to reach out through the form or directly via email.",
+    "subtitle": "Open to new projects, ideas, and collaborations. Reach out via form or email.",
     "emailLabel": "Email",
     "linkedinLabel": "LinkedIn",
     "formTitle": "Send a message",
@@ -116,18 +79,18 @@
     "emailInputLabel": "Email",
     "emailPlaceholder": "your@email.com",
     "messageLabel": "Message",
-    "messagePlaceholder": "Tell me about your project or opportunity...",
-    "sendButton": "Send Message",
+    "messagePlaceholder": "Tell me about your project...",
+    "sendButton": "Send message",
     "sending": "Sending...",
-    "successMessage": "Message sent! I'll get back to you as soon as possible.",
-    "errorMessage": "Something went wrong. Please try again.",
-    "networkError": "Failed to send message. Please check your connection and try again.",
+    "successMessage": "Message sent! I'll reply soon.",
+    "errorMessage": "Something went wrong. Try again.",
+    "networkError": "Check your connection and try again.",
     "validation": {
-      "nameMin": "Name must be at least 2 characters",
-      "nameMax": "Name is too long",
-      "emailInvalid": "Please enter a valid email address",
-      "messageMin": "Message must be at least 10 characters",
-      "messageMax": "Message is too long"
+      "nameMin": "Min 2 characters",
+      "nameMax": "Name too long",
+      "emailInvalid": "Invalid email",
+      "messageMin": "Min 10 characters",
+      "messageMax": "Message too long"
     }
   },
   "footer": { "rights": "All rights reserved.", "linkedinAriaLabel": "LinkedIn profile" },

@@ -1,6 +1,7 @@
 'use client';
 
 import { AnimatedSection } from '@/components/ui/AnimatedSection/AnimatedSection';
+import { SectionHeader } from '@/components/ui/SectionHeader/SectionHeader';
 import { experienceItems } from '@/data/experience';
 import { useI18n } from '@/providers/I18nProvider';
 import styles from './Experience.module.scss';
@@ -11,13 +12,12 @@ export function Experience() {
   return (
     <section id="experience" className={styles.section} aria-labelledby="experience-title">
       <div className={styles.inner}>
-        <AnimatedSection className={styles.header}>
-          <p className="section-tag">{t('experience.tag')}</p>
-          <h2 className="section-title" id="experience-title">
-            {t('experience.title')}
-          </h2>
-          <p className="section-subtitle">{t('experience.subtitle')}</p>
-        </AnimatedSection>
+        <SectionHeader
+          id="experience-title"
+          title={t('experience.title')}
+          subtitle={t('experience.subtitle')}
+          className={styles.header}
+        />
 
         <div className={styles.timeline} role="list">
           {experienceItems.map((item, i) => {

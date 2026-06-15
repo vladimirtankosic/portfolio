@@ -27,13 +27,6 @@ export interface ExperienceItem {
   responsibilities: string[];
 }
 
-export interface TechnicalHighlight {
-  title: string;
-  icon: string;
-  description: string;
-  tags: string[];
-}
-
 export interface ContactFormData {
   name: string;
   email: string;

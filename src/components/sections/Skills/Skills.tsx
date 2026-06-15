@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { AnimatedSection } from '@/components/ui/AnimatedSection/AnimatedSection';
+import { SectionHeader } from '@/components/ui/SectionHeader/SectionHeader';
 import { skillCategories } from '@/data/skills';
 import { getTechnologyIcon } from '@/data/iconMap';
 import { useI18n } from '@/providers/I18nProvider';
@@ -21,13 +22,12 @@ export function Skills() {
   return (
     <section id="skills" className={styles.section} aria-labelledby="skills-title">
       <div className={styles.inner}>
-        <AnimatedSection className={styles.header}>
-          <p className="section-tag">{t('skills.tag')}</p>
-          <h2 className="section-title" id="skills-title">
-            {t('skills.title')}
-          </h2>
-          <p className="section-subtitle">{t('skills.subtitle')}</p>
-        </AnimatedSection>
+        <SectionHeader
+          id="skills-title"
+          title={t('skills.title')}
+          subtitle={t('skills.subtitle')}
+          className={styles.header}
+        />
 
         <div className={styles.grid}>
           {skillCategories.map((category, i) => (

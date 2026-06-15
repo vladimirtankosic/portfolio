@@ -82,21 +82,6 @@
   }
 }
 
-@mixin text-gradient {
-  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-@mixin section-title {
-  font-size: clamp(2rem, 4vw, 2.75rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1.15;
-  color: var(--text-primary);
-}
-
 @mixin tag {
   display: inline-flex;
   align-items: center;
@@ -113,6 +98,21 @@
   white-space: nowrap;
 }
 
+@mixin text-gradient {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-hover) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@mixin section-title {
+  font-size: clamp(2.25rem, 4.5vw, 3.25rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--text-primary);
+}
+
 @mixin focus-ring {
 }
 
@@ -121,7 +121,7 @@
 // Keeps blur / opacity / border in sync across the entire design system
 
 @mixin glass {
-  background: rgba(10, 13, 22, 0.80);
+  background: rgba(10, 13, 22, 0.8);
   backdrop-filter: blur(20px) saturate(1.5);
   -webkit-backdrop-filter: blur(20px) saturate(1.5);
   border: 0.5px solid rgba(255, 255, 255, 0.11);

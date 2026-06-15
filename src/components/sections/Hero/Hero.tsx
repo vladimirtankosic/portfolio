@@ -26,10 +26,6 @@ export function Hero() {
 
       <div className={styles.inner}>
         <div className={styles.content}>
-          <motion.div className={styles.badge} {...fadeUp(0.1)}>
-            {t('hero.badge')}
-          </motion.div>
-
           <motion.h1 className={styles.headline} {...fadeUp(0.2)}>
             {t('hero.greeting')} <span className={styles.accent}>{t('hero.name')}</span>
           </motion.h1>
@@ -43,13 +39,7 @@ export function Hero() {
           </motion.p>
 
           <motion.div className={styles.ctas} {...fadeUp(0.5)}>
-            <Button
-              as="a"
-              href="/cv/VladimirTankosicCV.pdf"
-              variant="primary"
-              size="lg"
-              download
-            >
+            <Button as="a" href="/cv/VladimirTankosicCV.pdf" variant="primary" size="lg" download>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="18"

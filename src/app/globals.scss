@@ -139,25 +139,33 @@ select:focus-visible {
   outline: none;
 }
 
+// ── Section alternating backgrounds ───────────────────────────────────────
+// Content sections automatically alternate between --bg-primary and
+// --bg-secondary based on their position in #main-content.
+// Hero (#hero, nth-child 1) is excluded — it inherits the page background.
+// Add or remove sections in page.tsx and the pattern updates automatically.
+#main-content > section:not(#hero) {
+  background: var(--bg-primary);
+}
+
+#main-content > section:not(#hero):nth-child(odd) {
+  background: var(--bg-secondary);
+}
+
 // ── Utility classes ────────────────────────────────────────────────────────
 
 .container {
   @include container;
 }
 
-.section-tag {
-  @include tag;
+.section-title {
+  @include section-title;
   margin-bottom: 16px;
 }
 
-.section-title {
-  @include section-title;
-  margin-bottom: 12px;
-}
-
 .section-subtitle {
-  font-size: clamp(1rem, 1.5vw, 1.125rem);
+  font-size: clamp(0.9375rem, 1.4vw, 1.0625rem);
   color: var(--text-secondary);
-  max-width: 600px;
-  line-height: 1.7;
+  max-width: 580px;
+  line-height: 1.75;
 }
