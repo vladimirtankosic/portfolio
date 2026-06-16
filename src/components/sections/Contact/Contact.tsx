@@ -108,9 +108,9 @@ export function Contact() {
             <div className={styles.info}>
               <div className={styles.contactItems}>
                 <a
-                  href="mailto:tankosicvladimir93@gmail.com"
+                  href="mailto:vladimirtankosic.dev@gmail.com"
                   className={styles.contactIconLink}
-                  aria-label="Send email to tankosicvladimir93@gmail.com"
+                  aria-label="Send email to vladimirtankosic.dev@gmail.com"
                 >
                   <div className={styles.contactIcon}>
                     <svg
