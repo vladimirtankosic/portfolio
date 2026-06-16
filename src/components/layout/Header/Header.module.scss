@@ -39,7 +39,6 @@
   color: rgba(255, 255, 255, 0.92);
   border-radius: 100px;
   text-decoration: none;
-  will-change: transform;
 
   @include glass;
 
@@ -62,7 +61,6 @@
   height: 38px;
   padding: 4px;
   border-radius: 100px;
-  will-change: transform;
 
   @include glass;
 
@@ -82,7 +80,6 @@
   align-items: center;
   white-space: nowrap;
   cursor: pointer;
-  will-change: transform;
   transition:
     color 0.15s ease,
     background 0.15s ease;
@@ -126,7 +123,6 @@
   color: rgba(255, 255, 255, 0.78);
   cursor: pointer;
   @include flex-center;
-  will-change: transform;
 
   @include glass;
 

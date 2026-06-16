@@ -103,11 +103,16 @@ export function Header() {
   }, [sectionIds, pickActive]);
 
   useEffect(() => {
-    const onScroll = () => pickActive();
+    // IntersectionObserver handles section detection; this only covers the
+    // near-bottom edge case where the last section may never fully enter the viewport.
+    const onScroll = () => {
+      const nearBottom =
+        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 80;
+      if (nearBottom) setActiveSection(sectionIds[sectionIds.length - 1]);
+    };
     window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
     return () => window.removeEventListener('scroll', onScroll);
-  }, [pickActive]);
+  }, [sectionIds]);
 
   useEffect(() => {
     if (!isMobile && mobileOpen) setMobileOpen(false);
