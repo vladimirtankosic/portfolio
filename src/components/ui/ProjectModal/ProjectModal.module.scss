@@ -23,7 +23,9 @@
   width: 100%;
   max-width: 440px;
   overflow: hidden;
-  box-shadow: var(--shadow-lg), 0 0 0 1px var(--border);
+  box-shadow:
+    var(--shadow-lg),
+    0 0 0 1px var(--border);
 }
 
 // ── Modal header — close button lives here, never overlaps image ──────────────
@@ -128,6 +130,7 @@
   padding: 10px 16px 10px;
   background: var(--bg-primary);
   flex-wrap: wrap;
+  height: 54px;
 }
 
 .paginationDot {
