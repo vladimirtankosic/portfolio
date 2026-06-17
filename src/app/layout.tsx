@@ -32,7 +32,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: 'Vladimir Tankosic — Frontend Developer',
   description:
-    'Frontend Developer with 4+ years of experience building modern web applications. Specialized in React, Next.js and modern JavaScript technologies.',
+    'Frontend Developer with 4+ years building modern web applications with React, Next.js & TypeScript. Focused on performance, clean UI, and scalable architecture. Open to new projects and collaborations.',
   keywords: [
     'Frontend Developer',
     'React',
@@ -49,13 +49,14 @@ export const metadata: Metadata = {
     locale: 'en_US',
     title: 'Vladimir Tankosic — Frontend Developer',
     description:
-      'Frontend Developer with 4+ years of experience building modern web applications. Specialized in React, Next.js and modern JavaScript technologies.',
+      'Frontend Developer with 4+ years building modern web applications with React, Next.js & TypeScript. Focused on performance, clean UI, and scalable architecture. Open to new projects and collaborations.',
     siteName: 'Vladimir Tankosic Portfolio',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Vladimir Tankosic — Frontend Developer',
-    description: 'Frontend Developer with 4+ years of experience building modern web applications.',
+    description:
+      'Frontend Developer with 4+ years building modern web applications with React, Next.js & TypeScript. Focused on performance, clean UI, and scalable architecture. Open to new projects and collaborations.',
   },
   robots: {
     index: true,
